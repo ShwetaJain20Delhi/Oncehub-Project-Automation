@@ -24,10 +24,9 @@ time.sleep(3)
 driver.find_element_by_xpath("//*[@id='Mobileheader']/div/div[2]/div[2]/ul/li[1]/sl-profile-dropdown/div/div[2]/div[2]/ul/li[1]/a/span").click()
 time.sleep(2)
 
-
-#################################  Security SSO   #################################
-driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[2]/li/div/sl-sidenav-category-container/div/span[2]").click()
-time.sleep(2)
-driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[2]/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[1]/a").click()
+#################################  OH Compliance  #################################
+driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/li[1]/a/div/span[2]").click()
+time.sleep(4)
+driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[1]/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[2]/a").click()
 time.sleep(3)
 driver.close()

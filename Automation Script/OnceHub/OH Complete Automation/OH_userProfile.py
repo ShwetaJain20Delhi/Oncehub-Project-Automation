@@ -36,23 +36,6 @@ time.sleep(2)
 ##################################  Calendar connection settings in OH #################################
 driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[2]/ul/sl-sidenav-category/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[2]/a/div/span").click()
 time.sleep(3)
-# driver.find_element_by_id("ExchangeCalendarConnectBtn").click()
-# time.sleep(3)
-# main_page = driver.current_window_handle      #save the current window
-# time.sleep(5)
-# login_page = None
-# for handle in driver.window_handles:
-#     if handle != main_page:
-#        login_page = handle
-# driver.switch_to.window(login_page)    #switch to calendar connection window
-# time.sleep(10)
-# driver.find_element_by_id("email").send_keys("shweta.jain@oncehq.com")    #Calendar Email
-# driver.find_element_by_id("password").send_keys("Schedule@123")                  # Password for email connection
-# time.sleep(2)
-# driver.find_element_by_xpath("//*[@id='oui-dialog-4']/div[3]/div[2]/button/span").click()    #Click on connect button on calendar connection popup
-# time.sleep(2)
-# driver.switch_to.window(main_page)
-# time.sleep(10)
 
   #################################  Email Notification in OH##################################################
 driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[2]/ul/sl-sidenav-category/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[3]/a/div/span").click()
@@ -122,14 +105,14 @@ driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-
 time.sleep(2)
 driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[1]/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[1]/a[1]/div/span").click()
 time.sleep(2)
-driver.find_element_by_xpath("//*[@id='MainDataDiv']/div/div/oh-billing/oh-products/div[1]/div[3]/div[1]/div[1]/div[2]/div[2]/a").click()
-time.sleep(5)
-driver.find_element_by_xpath("//*[@id='oui-dialog-0']/oh-intro-popup/div[3]/div/button").click()
-time.sleep(3)
-driver.find_element_by_xpath("//*[@id='MainDataDiv']/div/div/oh-billing/oh-products/div[1]/div[3]/div[1]/div[2]/div[2]/div[2]/a").click()
-time.sleep(3)
-driver.find_element_by_xpath("//*[@id='oui-dialog-1']/oh-intro-popup/div[3]/div/button").click()
-time.sleep(5)
+# driver.find_element_by_xpath("//*[@id='MainDataDiv']/div/div/oh-billing/oh-products/div[1]/div[3]/div[1]/div[1]/div[2]/div[2]/a").click()
+# time.sleep(5)
+# driver.find_element_by_xpath("//*[@id='oui-dialog-0']/oh-intro-popup/div[3]/div/button").click()
+# time.sleep(3)
+# driver.find_element_by_xpath("//*[@id='MainDataDiv']/div/div/oh-billing/oh-products/div[1]/div[3]/div[1]/div[2]/div[2]/div[2]/a").click()
+# time.sleep(3)
+# driver.find_element_by_xpath("//*[@id='oui-dialog-1']/oh-intro-popup/div[3]/div/button").click()
+# time.sleep(5)
 driver.find_element_by_xpath("//*[@id='MainDataDiv']/div/div/oh-billing/oh-products/div[1]/div[3]/div[1]/div[3]/div[2]/div[2]/a").click()
 time.sleep(5)
 driver.back()
@@ -139,9 +122,11 @@ time.sleep(3)
 driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[1]/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[2]/a").click()
 time.sleep(3)
 
+#################################  Billing Notification  #################################
+driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[1]/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[3]/a").click()
+time.sleep(5)
+
 #################################  Billing Transaction  #################################
-driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[1]/li/div/sl-sidenav-category-container/div/span[2]").click()
-time.sleep(2)
 driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[1]/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[4]/a").click()
 time.sleep(3)
 driver.find_element_by_xpath("//*[@id='MainDataDiv']/div/div/oh-billing/oh-transactions/div[2]/div[1]/div/button/span/oui-icon").click()
@@ -152,3 +137,90 @@ driver.find_element_by_xpath("//*[@id='oui-dialog-0']/div[3]/div[2]/button").cli
 time.sleep(2)
 driver.find_element_by_xpath("//*[@id='oui-dialog-1']/div[3]/div/button").click()
 time.sleep(4)
+
+#################################  Security SSO   #################################
+driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[2]/li/div/sl-sidenav-category-container/div/span[2]").click()
+time.sleep(2)
+driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[2]/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[1]/a").click()
+time.sleep(3)
+
+
+#################################  Security Password    #################################
+driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[2]/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[2]/a").click()
+time.sleep(3)
+driver.find_element_by_xpath("//*[@id='uppercaseCB']/label/span").click()
+time.sleep(2)
+driver.find_element_by_xpath("//*[@id='specialcharacterCB']/label/span").click()
+time.sleep(2)
+driver.find_element_by_xpath("//*[@id='exprRD']/label/div[2]").click()
+time.sleep(2)
+driver.find_element_by_xpath("//*[@id='hstryEnblRD']/label/div[2]").click()
+time.sleep(2)
+driver.find_element_by_xpath("//*[@id='MainDataDiv']/div/div/oh-security/div/oh-password-policies/div[1]/div[2]/form/div/div[2]/div[5]/button[2]/span").click()
+time.sleep(5)
+
+#################################  Security SSO   #################################
+driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[2]/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[3]/a").click()
+time.sleep(3)
+driver.find_element_by_xpath("//*[@id='accountEnabled']/label/div[2]").click()
+time.sleep(3)
+driver.find_element_by_xpath("//*[@id='accountDisable']/label/div[2]").click()
+time.sleep(3)
+driver.find_element_by_xpath("//*[@id='MainDataDiv']/div/div/oh-security/div/oh-account-lockout-policies/div[1]/div[2]/form/div/div/div[3]/button[1]").click()
+time.sleep(3)
+
+#################################  Security SSO   #################################
+driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[2]/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[4]/a").click()
+time.sleep(3)
+driver.find_element_by_xpath("//*[@id='signOut']/label/div[2]").click()
+time.sleep(3)
+driver.find_element_by_xpath("//*[@id='timeOut']/label/div[2]").click()
+time.sleep(3)
+driver.find_element_by_xpath("//*[@id='MainDataDiv']/div/div/oh-security/div/oh-session-policies/div[1]/form/div/div/div[2]/button[1]").click()
+time.sleep(3)
+
+#################################  Privacy shield   #################################
+driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[3]/li/div/sl-sidenav-category-container/div/span[2]").click()
+time.sleep(2)
+driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[3]/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[1]/a").click()
+time.sleep(3)
+
+#################################  Privacy GDPR information   #################################
+driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[3]/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[2]/a").click()
+time.sleep(3)
+driver.find_element_by_name("txtydpFullName").clear()
+time.sleep(2)
+driver.find_element_by_name("txtydpFullName").send_keys("Test 1")
+time.sleep(2)
+driver.find_element_by_name("txtydpEmailId").clear()
+time.sleep(2)
+driver.find_element_by_name("txtydpEmailId").send_keys("testinginviteoncetesting@gmail.com")
+time.sleep(2)
+driver.find_element_by_name("txtydpAddres").clear()
+time.sleep(2)
+driver.find_element_by_name("txtydpAddres").send_keys("testinginviteoncetesting@gmail.com")
+time.sleep(2)
+driver.find_element_by_xpath("//*[@id='MainDataDiv']/div/div/oh-privacy/div/oh-gdpr-information/div[1]/form/div/div/div[4]/button[1]").click()
+time.sleep(5)
+
+#################################  Privacy GDPR compliance   #################################
+driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[3]/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[3]/a").click()
+time.sleep(5)
+
+#################################  OH Compliance  #################################
+driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/li[1]/a/div/span[2]").click()
+time.sleep(4)
+driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[1]/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[2]/a").click()
+time.sleep(3)
+
+
+#################################  OH Settings  #################################
+driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/li[2]/a/div/span[2]").click()
+time.sleep(2)
+driver.find_element_by_xpath("//*[@id='MainDataDiv']/div/div/oh-account-settings/div[2]/div/div/div[2]/p/button").click()
+time.sleep(3)
+driver.find_element_by_xpath("//*[@id='deleteAccount']/label/span").click()
+time.sleep(3)
+driver.find_element_by_xpath("//*[@id='oui-dialog-0']/sl-oh-account-delete/div[3]/div[1]/button/span").click()
+time.sleep(3)
+driver.close()
