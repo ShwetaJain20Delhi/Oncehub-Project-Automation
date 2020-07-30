@@ -33,6 +33,6 @@ driver.find_element_by_xpath("//*[@id='MainDataDiv']/div/div/oh-account-settings
 time.sleep(3)
 driver.find_element_by_xpath("//*[@id='deleteAccount']/label/span").click()
 time.sleep(3)
-driver.find_element_by_xpath("//*[@id='oui-dialog-0']/sl-oh-account-delete/div[3]/div[1]/button/span").click()
+driver.find_element_by_xpath("//*[@id='oui-dialog-1']/sl-oh-account-delete/div[3]/div[1]/button/span").click()
 time.sleep(3)
 driver.close()

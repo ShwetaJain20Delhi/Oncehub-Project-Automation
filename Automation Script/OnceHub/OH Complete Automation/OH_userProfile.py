@@ -205,6 +205,8 @@ driver.find_element_by_xpath("//*[@id='MainDataDiv']/div/div/oh-privacy/div/oh-g
 time.sleep(5)
 
 #################################  Privacy GDPR compliance   #################################
+Flag = driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[3]/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[3]/a")
+driver.execute_script("arguments[0].scrollIntoView();", Flag)
 driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[3]/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[3]/a").click()
 time.sleep(5)
 
@@ -224,6 +226,6 @@ driver.find_element_by_xpath("//*[@id='MainDataDiv']/div/div/oh-account-settings
 time.sleep(3)
 driver.find_element_by_xpath("//*[@id='deleteAccount']/label/span").click()
 time.sleep(3)
-driver.find_element_by_xpath("//*[@id='oui-dialog-0']/sl-oh-account-delete/div[3]/div[1]/button/span").click()
+driver.find_element_by_xpath("//*[@id='oui-dialog-1']/sl-oh-account-delete/div[3]/div[1]/button/span").click()
 time.sleep(3)
 driver.close()

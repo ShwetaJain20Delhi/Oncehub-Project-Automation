@@ -35,15 +35,46 @@ time.sleep(5)
 
                        # Select SO from Products page
 driver.find_element_by_id("so-get-started").click()   #SO Product Select
-time.sleep(3)
+time.sleep(5)
 
                         # TimeZone detection
-driver.find_element_by_xpath("//*[@id='continue']/span").click()
+
+driver.find_element_by_xpath("//*[@id='sunday']/label/span/span[2]").click()
+time.sleep(2)
+driver.find_element_by_xpath("//*[@id='saturday']/label/span/span[2]").click()
+time.sleep(2)
+driver.find_element_by_xpath("//*[@id='changetz']/span").click()
+time.sleep(2)
+driver.find_element_by_xpath("//*[@id='selectedCountry']/div/div[1]/span").click()
+time.sleep(2)
+driver.find_element_by_id("oui-input-0").send_keys("India")
+time.sleep(2)
+driver.find_element_by_xpath("//*[@id='oui-option-159']/span").click()
+time.sleep(2)
+driver.find_element_by_id("saveTimeZone").click()
+time.sleep(2)
+driver.find_element_by_id("continue").click()
 time.sleep(3)
 
                          # Calendar Connection
-driver.find_element_by_xpath("//*[@id='setUpLater']").click()
+
+driver.find_element_by_xpath("//*[@id='MainDataDiv']/div/div/oh-onboarding/div/oh-onboarding-calendar-connection/oh-calendar-connection/div/div/div/button/span").click()
 time.sleep(3)
+driver.find_element_by_id("ExchangeCalendarConnectBtn").click()
+time.sleep(2)
+driver.find_element_by_id("email").send_keys("gilad@staticso.com")
+time.sleep(2)
+driver.find_element_by_id("password").send_keys("schEdu1e")
+time.sleep(2)
+driver.find_element_by_xpath("//*[@id='oui-dialog-1']/div[2]/div/form/div[3]/button/span").click()
+time.sleep(2)
+driver.find_element_by_id("ewsUrl").send_keys("https://mex09.emailsrvr.com/owa")
+time.sleep(2)
+driver.find_element_by_xpath("//*[@id='oui-dialog-1']/div[3]/div[2]/button").click()
+time.sleep(15)
+driver.find_element_by_id("continue").click()
+time.sleep(3)
+
 # driver.find_element_by_xpath("//*[@id='MainDataDiv']/div/div/oh-onboarding/div/oh-onboarding-calendar-connection/oh-calendar-connection/div/div/div/button/span").click()
 # time.sleep(3)
 # driver.find_element_by_xpath("//*[@id='ExchangeCalendarConnectBtn']").click()     #Calendar Connection
