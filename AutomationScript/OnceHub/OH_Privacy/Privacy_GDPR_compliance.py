@@ -2,6 +2,7 @@ from selenium import webdriver
 import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+from AutomationScript.
 
 
 driver = webdriver.Chrome()
@@ -22,14 +23,14 @@ time.sleep(10)
 driver.find_element_by_xpath("//*[@id='rAccountIcon']").click()
 time.sleep(3)
 driver.find_element_by_xpath("//*[@id='Mobileheader']/div/div[2]/div[2]/ul/li[1]/sl-profile-dropdown/div/div[2]/div[2]/ul/li[1]/a/span").click()
-time.sleep(5)
-driver.find_element_by_xpath("//*[@id='MainDataDiv']/div/div/oh-user-profile/oh-page-header/div[1]/div[3]/div/button/span/oui-icon").click()
 time.sleep(2)
-driver.find_element_by_xpath("//*[@id='cdk-overlay-0']/div/div/button/span").click()
+
+
+#################################  Privacy GDPR compliance   #################################
+Flag = driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[3]/li/div/sl-sidenav-category-container/div/span[2]")
+driver.execute_script("arguments[0].scrollIntoView();", Flag)
+driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[3]/li/div/sl-sidenav-category-container/div/span[2]").click()
 time.sleep(2)
-driver.find_element_by_name("lastName").clear()
-driver.find_element_by_name("lastName").send_keys("Admin")
-time.sleep(2)
-driver.find_element_by_xpath("//*[@id='oui-dialog-0']/form/div[2]/div[1]/button").click()
+driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[3]/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[3]/a").click()
 time.sleep(5)
 driver.close()
