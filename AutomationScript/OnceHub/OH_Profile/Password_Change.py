@@ -2,37 +2,41 @@ from selenium import webdriver
 import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+from AutomationScript.OnceHub.OH_Profile.OH_personal_details import OH_personal_setting
+from AutomationScript.Locators.OH_Locators.OH_Profile_Locators import password_policies
+from AutomationScript.Webdrivers.Chrome_driver import get_chrome_driver
 
 
-driver = webdriver.Chrome()
-driver.set_page_load_timeout(15)
-driver.maximize_window()
-driver.get("https://app3.onceplatform.com/")
-driver.implicitly_wait(35)
+class passwordpage():
+    driver = None
 
-#################################  Login to OH  #################################
-Ele=driver.find_element_by_name("email")
-driver.find_element_by_name("email").send_keys("death-mad-34@staticso2.com")
-Ele1=driver.find_element_by_name("password")
-driver.find_element_by_name("password").send_keys("testing@123")
-driver.find_element_by_id("signIn").click()
-time.sleep(10)
+    def __init__(self, driver):
+        self.driver = driver
 
-#################################  Edit Profile settings  #################################
-driver.find_element_by_xpath("//*[@id='rAccountIcon']").click()
-time.sleep(3)
-driver.find_element_by_xpath("//*[@id='Mobileheader']/div/div[2]/div[2]/ul/li[1]/sl-profile-dropdown/div/div[2]/div[2]/ul/li[1]/a/span").click()
-time.sleep(5)
+    def server_login(self):
+        personal_setting = OH_personal_setting(driver)
+        personal_setting.navigate_to_url()
+        personal_setting.login_to_OH()
+        personal_setting.select_my_profile()
 
-#################################  Password #################################
-driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[2]/ul/sl-sidenav-category/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[6]/a/div/span").click()
-time.sleep(2)
-driver.find_element_by_id("current-password").send_keys("testing@123")
-time.sleep(2)
-driver.find_element_by_id("new-password").send_keys("testing@1234")
-time.sleep(2)
-driver.find_element_by_id("re-type-password").send_keys("testing@1234")
-time.sleep(2)
-driver.find_element_by_xpath("//*[@id='discardButton']/span").click()
-time.sleep(5)
-driver.close()
+    def password_module(self):
+        passpage = password_policies(self.driver)
+        passpage.select_password_from_OH()
+        time.sleep(3)
+        passpage.enter_current_password("testing@1234")
+        time.sleep(2)
+        passpage.enter_new_password("testing@1234")
+        time.sleep(2)
+        passpage.Reenter_new_password("testing@1234")
+        time.sleep(2)
+        passpage.Discard_changes()
+        time.sleep(5)
+        self.driver.close()
+
+
+if __name__ == "__main__":
+    driver = get_chrome_driver().launch_chrome()
+    password = passwordpage(driver)
+    password.server_login()
+    password.password_module()
+

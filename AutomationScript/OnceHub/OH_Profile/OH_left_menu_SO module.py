@@ -1,12 +1,13 @@
 from selenium import webdriver
 import time
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
 from AutomationScript.OnceHub.OH_Profile.OH_personal_details import OH_personal_setting
-from AutomationScript.Locators.OH_Locators.OH_Profile_Locators import datetime
+from AutomationScript.Locators.OH_Locators.OH_Profile_Locators import Oh_so_module
 from AutomationScript.Webdrivers.Chrome_driver import get_chrome_driver
 
 
-class DateAndtime():
-
+class oh_so():
     driver = None
 
     def __init__(self, driver):
@@ -18,23 +19,21 @@ class DateAndtime():
         personal_setting.login_to_OH()
         personal_setting.select_my_profile()
 
-    def datetime(self):
-        date1 = datetime(self.driver)
-        date1.select_datetime()
+    def OH_SO_module(self):
+        so_page = Oh_so_module(self.driver)
+        so_page.select_so()
+        time.sleep(3)
+        so_page.select_payment_integration()
         time.sleep(2)
-        date1.clickontimezone_tochange()
+        so_page.select_zapier_integration()
         time.sleep(2)
-        date1.search_timezone("India")
-        time.sleep(2)
-        date1.select_searchedtimezone()
-        time.sleep(2)
-        date1.click_save()
+        so_page.discard_changes()
         time.sleep(5)
         self.driver.close()
 
 
 if __name__ == "__main__":
     driver = get_chrome_driver().launch_chrome()
-    dateandtime = DateAndtime(driver)
-    dateandtime.server_login()
-    dateandtime.datetime()
+    so_module = oh_so(driver)
+    so_module.server_login()
+    so_module.OH_SO_module()

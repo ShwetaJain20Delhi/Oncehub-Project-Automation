@@ -1,12 +1,13 @@
 from selenium import webdriver
 import time
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
 from AutomationScript.OnceHub.OH_Profile.OH_personal_details import OH_personal_setting
-from AutomationScript.Locators.OH_Locators.OH_Profile_Locators import datetime
+from AutomationScript.Locators.OH_Locators.OH_Profile_Locators import Emailnotification
 from AutomationScript.Webdrivers.Chrome_driver import get_chrome_driver
 
 
-class DateAndtime():
-
+class emailnotification():
     driver = None
 
     def __init__(self, driver):
@@ -18,23 +19,20 @@ class DateAndtime():
         personal_setting.login_to_OH()
         personal_setting.select_my_profile()
 
-    def datetime(self):
-        date1 = datetime(self.driver)
-        date1.select_datetime()
-        time.sleep(2)
-        date1.clickontimezone_tochange()
-        time.sleep(2)
-        date1.search_timezone("India")
-        time.sleep(2)
-        date1.select_searchedtimezone()
-        time.sleep(2)
-        date1.click_save()
+    def Emailnotification(self):
+        notification = Emailnotification(self.driver)
+        notification.select_email_notification()
         time.sleep(5)
+        notification.edit_sentfromname_field("Test Admin")
+        time.sleep(3)
+        notification.click_save()
+        time.sleep(4)
         self.driver.close()
 
 
 if __name__ == "__main__":
     driver = get_chrome_driver().launch_chrome()
-    dateandtime = DateAndtime(driver)
-    dateandtime.server_login()
-    dateandtime.datetime()
+    email = emailnotification(driver)
+    email.server_login()
+    email.Emailnotification()
+
