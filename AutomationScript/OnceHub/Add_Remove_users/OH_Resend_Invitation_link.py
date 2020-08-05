@@ -1,12 +1,10 @@
-from selenium import webdriver
-import time
-from selenium.webdriver.common.keys import Keys
-from AutomationScript.Locators.OH_Locators.OH_AddRemoveUsers_Locators import users, Remove_user
+from AutomationScript.Locators.OH_Locators.OH_AddRemoveUsers_Locators import users, Remove_user, Resend_link
 from AutomationScript.OnceHub.OH_Profile.OH_personal_details import OH_personal_setting
 from AutomationScript.Webdrivers.Chrome_driver import get_chrome_driver
+import time
 
 
-class Remove_Users():
+class Resend_invitation():
     driver = None
 
     def __init__(self, driver):
@@ -23,23 +21,23 @@ class Remove_Users():
         user_module.click_on_Users()
         time.sleep(5)
 
-    def Remove_user(self):
-        remove = Remove_user(self.driver)
-        remove.click_on_user_3dot()
-        time.sleep(3)
-        remove.select_delete_user_profile()
-        time.sleep(3)
-        remove.click_on_delete_user_profile_button()
-        time.sleep(10)
-        remove.click_on_close_button()
+    def Resend_invitation_link(self):
+        resend = Resend_link(self.driver)
+        resend.click_on_user_3dot()
+        time.sleep(5)
+        resend.select_Resend_invitation_option()
+        time.sleep(5)
+        resend.click_close()
         time.sleep(5)
         self.driver.close()
 
 
+
 if __name__ == "__main__":
     driver = get_chrome_driver().launch_chrome()
-    removing_user = Remove_Users(driver)
-    removing_user.server_login()
-    removing_user.Users()
-    removing_user.Remove_user()
+    resend_invite = Resend_invitation(driver)
+    resend_invite.server_login()
+    resend_invite.Users()
+    resend_invite.Resend_invitation_link()
+
 

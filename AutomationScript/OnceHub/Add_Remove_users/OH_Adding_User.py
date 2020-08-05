@@ -1,49 +1,98 @@
 from selenium import webdriver
 import time
 from selenium.webdriver.common.keys import Keys
+from AutomationScript.Locators.OH_Locators.OH_AddRemoveUsers_Locators import users, Add_user, inbox_email
+from AutomationScript.OnceHub.OH_Profile.OH_personal_details import OH_personal_setting
+from AutomationScript.Webdrivers.Chrome_driver import get_chrome_driver
 
 
-driver = webdriver.Chrome()
-driver.set_page_load_timeout(15)
-driver.maximize_window()
+class Add_Users():
+    driver = None
 
-#################################  Open Inbox URl and Copied the Email id  #################################
-driver.get("https://inbox.staticso2.com/")
-time.sleep(2)
-driver.find_element_by_id("div-domain").click()
-time.sleep(2)
+    def __init__(self, driver):
+        self.driver = driver
 
-#################################  Redirect to App3 server  #################################
-driver.get("https://app2.onceplatform.com/")
-driver.implicitly_wait(35)
+    def server_login(self):
+        personal_setting = OH_personal_setting(driver)
+        personal_setting.navigate_to_url()
+        personal_setting.login_to_OH()
+        personal_setting.select_my_profile()
 
-#################################  Login to OH  #################################
-Ele=driver.find_element_by_name("email")
-driver.find_element_by_name("email").send_keys("location-numeral-38@staticso2.com")
-Ele1=driver.find_element_by_name("password")
-driver.find_element_by_name("password").send_keys("testing@123")
-driver.find_element_by_id("signIn").click()
-time.sleep(10)
+    def Users(self):
+        user_module = users(self.driver)
+        user_module.click_on_Users()
+        time.sleep(5)
 
-#################################  Adding new user to Admin account  #################################
-driver.find_element_by_xpath("//*[@id='rAccountIcon']").click()
-time.sleep(3)
-driver.find_element_by_xpath("//span[contains(text(),'My profile')]").click()
-time.sleep(5)
-driver.find_element_by_xpath("//span[contains(text(),'Users')]").click()
-time.sleep(3)
-driver.find_element_by_xpath("//div[@class='addUserDiv']").click()
-time.sleep(3)
-driver.find_element_by_id("firstName").send_keys("User")
-time.sleep(2)
-driver.find_element_by_id("lastName").send_keys("1")
-time.sleep(2)
-Email = Keys.CONTROL, 'V'
-driver.find_element_by_id("email").send_keys(Keys.CONTROL, 'V')
-time.sleep(2)
-driver.find_element_by_xpath("//button[@title='Create new User and send invitation email']").click()
-time.sleep(10)
-driver.find_element_by_xpath("//span[contains(text(),'Users')]").click()
-time.sleep(5)
-driver.close()
+    def add_user(self):
+        user_add = Add_user(self.driver)
+        user_add.select_adduser_option()
+        time.sleep(3)
+        user_add.enter_first_name("Test")
+        time.sleep(2)
+        user_add.enter_last_name("User")
+        time.sleep(2)
+        user_add.enter_email("shweta@staticso2.com")
+        time.sleep(2)
+        user_add.click_create_user_send_invitation_button()
+        time.sleep(8)
+        user_add.select_users()
+        time.sleep(5)
+        driver.close()
 
+
+if __name__ == "__main__":
+    driver = get_chrome_driver().launch_chrome()
+    adding_user = Add_Users(driver)
+    adding_user.server_login()
+    adding_user.Users()
+    adding_user.add_user()
+
+
+   ############################ Add user with Inbox email ##########################################
+# class Add_Users():
+#     driver = None
+#
+#     def __init__(self, driver):
+#         self.driver = driver
+#
+#     def inbox_email_copy(self):
+#         email = inbox_email(self.driver)
+#         email.launch_inbox_email()
+#         email.copy_inbox_email()
+#
+#     def server_login(self):
+#         personal_setting = OH_personal_setting(driver)
+#         personal_setting.navigate_to_url()
+#         personal_setting.login_to_OH()
+#         personal_setting.select_my_profile()
+#         time.sleep(10)
+#
+#     def Users(self):
+#         user_module = users(self.driver)
+#         user_module.click_on_Users()
+#         time.sleep(5)
+#
+#     def add_user(self):
+#         user_add = Add_user(self.driver)
+#         user_add.select_adduser_option()
+#         time.sleep(3)
+#         user_add.enter_first_name("Test")
+#         time.sleep(2)
+#         user_add.enter_last_name("User")
+#         time.sleep(2)
+#         user_add.enter_email(Keys.CONTROL+ "v")
+#         time.sleep(2)
+#         user_add.click_create_user_send_invitation_button()
+#         time.sleep(7)
+#         user_add.select_users()
+#         time.sleep(5)
+#         driver.close()
+#
+#
+# if __name__ == "__main__":
+#     driver = get_chrome_driver().launch_chrome()
+#     adding_user = Add_Users(driver)
+#     adding_user.inbox_email_copy()
+#     adding_user.server_login()
+#     adding_user.Users()
+#     adding_user.add_user()
