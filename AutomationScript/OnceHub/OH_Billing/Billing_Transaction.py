@@ -2,41 +2,48 @@ from selenium import webdriver
 import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+from AutomationScript.Locators.OH_Locators.OH_Billing_Locators import Billing, Billing_Transaction
+from AutomationScript.OnceHub.OH_Profile.OH_personal_details import OH_personal_setting
+from AutomationScript.Webdrivers.Chrome_driver import get_chrome_driver
 
 
-driver = webdriver.Chrome()
-driver.set_page_load_timeout(15)
-driver.maximize_window()
-driver.get("https://app3.onceplatform.com/")
-driver.implicitly_wait(35)
+class BillingPage():
+    driver = None
 
-#################################  Login to OH  #################################
-Ele=driver.find_element_by_name("email")
-driver.find_element_by_name("email").send_keys("death-mad-34@staticso2.com")
-Ele1=driver.find_element_by_name("password")
-driver.find_element_by_name("password").send_keys("testing@123")
-driver.find_element_by_id("signIn").click()
-time.sleep(10)
+    def __init__(self, driver):
+        self.driver = driver
 
-#################################  Edit Profile settings  #################################
-driver.find_element_by_xpath("//*[@id='rAccountIcon']").click()
-time.sleep(3)
-driver.find_element_by_xpath("//*[@id='Mobileheader']/div/div[2]/div[2]/ul/li[1]/sl-profile-dropdown/div/div[2]/div[2]/ul/li[1]/a/span").click()
-time.sleep(2)
+    def server_login(self):
+        personal_setting = OH_personal_setting(driver)
+        personal_setting.navigate_to_url()
+        personal_setting.login_to_OH()
+        personal_setting.select_my_profile()
 
-#################################  Billing Transaction  #################################
-Flag = driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/li[2]/a/div/span[2]")
-driver.execute_script("arguments[0].scrollIntoView();", Flag)
-driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[1]/li/div/sl-sidenav-category-container/div/span[2]").click()
-time.sleep(2)
-driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[1]/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[4]/a").click()
-time.sleep(3)
-driver.find_element_by_xpath("//*[@id='MainDataDiv']/div/div/oh-billing/oh-transactions/div[2]/div[1]/div/button/span/oui-icon").click()
-time.sleep(2)
-driver.find_element_by_xpath("//*[@id='cdk-overlay-0']/div/div/button").click()
-time.sleep(2)
-driver.find_element_by_xpath("//*[@id='oui-dialog-0']/div[3]/div[2]/button").click()
-time.sleep(2)
-driver.find_element_by_xpath("//*[@id='oui-dialog-1']/div[3]/div/button").click()
-time.sleep(4)
-driver.close()
+    def Billing(self):
+        bill = Billing(self.driver)
+        bill.scroll_till_billing_visible()
+        time.sleep(4)
+        bill.click_on_Billing()
+        time.sleep(4)
+
+    def Billing_Transaction_page(self):
+        bill_trans = Billing_Transaction(self.driver)
+        bill_trans.click_on_Billing_transaction()
+        time.sleep(4)
+        bill_trans.click_on_3dot_of_transaction()
+        time.sleep(4)
+        bill_trans.select_Buyer_details_on_invoice_option()
+        time.sleep(4)
+        bill_trans.click_on_save_button()
+        time.sleep(4)
+        bill_trans.close_popup()
+        time.sleep(3)
+        driver.close()
+
+
+if __name__ == "__main__":
+    driver = get_chrome_driver().launch_chrome()
+    billProd = BillingPage(driver)
+    billProd.server_login()
+    billProd.Billing()
+    billProd.Billing_Transaction_page()

@@ -23,7 +23,34 @@ class ExchangeCalendar():
 class reminder_setting():
     def __init__(self, driver):
         self.driver = driver
-    def
+    def click_reminder_dropdown(self):
+        self.driver.find_element_by_xpath("//span[contains(text(),' 15 minutes ') and @id='selected-values']").click()
+    def select_5minute_reminder(self):
+        self.driver.find_element_by_xpath("//span[@class='oui-option-text' and starts-with(text(),' 5 minutes')]").click()
+
+
+class sync_2way_setting():
+    def __init__(self, driver):
+        self.driver = driver
+    def scroll_till_so_advanced_setting_visible(self):
+        flag = self.driver.find_element_by_xpath("//p[contains(text(),'Deleting an event in Exchange/Outlook Calendar cancels the booking in ScheduleOnce')]//following-sibling::div[@class='radioOuter']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", flag)
+    def change_togglevalue_for_delete_event(self):
+        self.driver.find_element_by_xpath("//p[contains(text(),'Deleting an event in Exchange/Outlook Calendar cancels the booking in ScheduleOnce')]//following-sibling::div[@class='radioOuter']").click()
+    def change_togglevalue_for_change_event(self):
+        self.driver.find_element_by_xpath("//p[contains(text(),'Changing the time in Exchange/Outlook Calendar updates the booking in ScheduleOnce')]//following-sibling::div[@class='radioOuter']").click()
+
+
+class so_setup_calendarpage():
+    def __init__(self, driver):
+        self.driver = driver
+    def scroll_till_so_continueSetup_visible(self):
+        flag = self.driver.find_element_by_xpath("//span[contains(text(),'Continue setup')]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", flag)
+    def select_continue_setup_from_calendarpage(self):
+        self.driver.find_element_by_id("ContinueSetupBtn").click()
+
+
 
 
 

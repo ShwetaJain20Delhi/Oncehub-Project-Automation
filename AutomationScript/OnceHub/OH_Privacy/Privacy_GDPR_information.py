@@ -2,48 +2,48 @@ from selenium import webdriver
 import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+from AutomationScript.Locators.OH_Locators.OH_Privacy_Locators import Privacy, Privacy_GDPR_Information
+from AutomationScript.OnceHub.OH_Profile.OH_personal_details import OH_personal_setting
+from AutomationScript.Webdrivers.Chrome_driver import get_chrome_driver
 
 
-driver = webdriver.Chrome()
-driver.set_page_load_timeout(15)
-driver.maximize_window()
-driver.get("https://app3.onceplatform.com/")
-driver.implicitly_wait(35)
+class Privacy_info():
+    driver = None
 
-#################################  Login to OH  #################################
-Ele=driver.find_element_by_name("email")
-driver.find_element_by_name("email").send_keys("death-mad-34@staticso2.com")
-Ele1=driver.find_element_by_name("password")
-driver.find_element_by_name("password").send_keys("testing@123")
-driver.find_element_by_id("signIn").click()
-time.sleep(10)
+    def __init__(self, driver):
+        self.driver = driver
 
-#################################  Edit Profile settings  #################################
-driver.find_element_by_xpath("//*[@id='rAccountIcon']").click()
-time.sleep(3)
-driver.find_element_by_xpath("//*[@id='Mobileheader']/div/div[2]/div[2]/ul/li[1]/sl-profile-dropdown/div/div[2]/div[2]/ul/li[1]/a/span").click()
-time.sleep(2)
+    def server_login(self):
+        personal_setting = OH_personal_setting(driver)
+        personal_setting.navigate_to_url()
+        personal_setting.login_to_OH()
+        personal_setting.select_my_profile()
+
+    def Privacy(self):
+        bill = Privacy(self.driver)
+        bill.scroll_till_privacy_visible()
+        time.sleep(4)
+        bill.click_on_Privacy()
+        time.sleep(4)
+
+    def GDPR_Information(self):
+        privacy_gdpr = Privacy_GDPR_Information(self.driver)
+        privacy_gdpr.click_Privacy_GDPR()
+        time.sleep(3)
+        privacy_gdpr.enter_Fullname("Test 1")
+        time.sleep(3)
+        privacy_gdpr.enter_emailid("testinginviteoncetesting@gmail.com")
+        time.sleep(3)
+        privacy_gdpr.enter_address("Delhi")
+        time.sleep(3)
+        privacy_gdpr.click_save()
+        time.sleep(4)
+        driver.close()
 
 
-#################################  Privacy GDPR information   #################################
-Flag = driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[3]/li/div/sl-sidenav-category-container/div/span[2]")
-driver.execute_script("arguments[0].scrollIntoView();", Flag)
-driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[3]/li/div/sl-sidenav-category-container/div/span[2]").click()
-time.sleep(2)
-driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[3]/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[2]/a").click()
-time.sleep(3)
-driver.find_element_by_name("txtydpFullName").clear()
-time.sleep(2)
-driver.find_element_by_name("txtydpFullName").send_keys("Test 1")
-time.sleep(2)
-driver.find_element_by_name("txtydpEmailId").clear()
-time.sleep(2)
-driver.find_element_by_name("txtydpEmailId").send_keys("testinginviteoncetesting@gmail.com")
-time.sleep(2)
-driver.find_element_by_name("txtydpAddres").clear()
-time.sleep(2)
-driver.find_element_by_name("txtydpAddres").send_keys("testinginviteoncetesting@gmail.com")
-time.sleep(2)
-driver.find_element_by_xpath("//*[@id='MainDataDiv']/div/div/oh-privacy/div/oh-gdpr-information/div[1]/form/div/div/div[4]/button[1]").click()
-time.sleep(5)
-driver.close()
+if __name__ == "__main__":
+    driver = get_chrome_driver().launch_chrome()
+    info = Privacy_info(driver)
+    info.server_login()
+    info.Privacy()
+    info.GDPR_Information()

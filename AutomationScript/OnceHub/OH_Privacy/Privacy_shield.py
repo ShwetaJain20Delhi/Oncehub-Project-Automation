@@ -2,34 +2,42 @@ from selenium import webdriver
 import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+from AutomationScript.Locators.OH_Locators.OH_Privacy_Locators import Privacy, Privacy_shield
+from AutomationScript.OnceHub.OH_Profile.OH_personal_details import OH_personal_setting
+from AutomationScript.Webdrivers.Chrome_driver import get_chrome_driver
 
 
-driver = webdriver.Chrome()
-driver.set_page_load_timeout(15)
-driver.maximize_window()
-driver.get("https://app3.onceplatform.com/")
-driver.implicitly_wait(35)
+class PrivacyPage():
+    driver = None
 
-#################################  Login to OH  #################################
-Ele=driver.find_element_by_name("email")
-driver.find_element_by_name("email").send_keys("death-mad-34@staticso2.com")
-Ele1=driver.find_element_by_name("password")
-driver.find_element_by_name("password").send_keys("testing@123")
-driver.find_element_by_id("signIn").click()
-time.sleep(10)
+    def __init__(self, driver):
+        self.driver = driver
 
-#################################  Edit Profile settings  #################################
-driver.find_element_by_xpath("//*[@id='rAccountIcon']").click()
-time.sleep(3)
-driver.find_element_by_xpath("//*[@id='Mobileheader']/div/div[2]/div[2]/ul/li[1]/sl-profile-dropdown/div/div[2]/div[2]/ul/li[1]/a/span").click()
-time.sleep(2)
+    def server_login(self):
+        personal_setting = OH_personal_setting(driver)
+        personal_setting.navigate_to_url()
+        personal_setting.login_to_OH()
+        personal_setting.select_my_profile()
+
+    def Privacy(self):
+        bill = Privacy(self.driver)
+        bill.scroll_till_privacy_visible()
+        time.sleep(4)
+        bill.click_on_Privacy()
+        time.sleep(4)
+
+    def Privacy_Shield(self):
+        privacy = Privacy_shield(self.driver)
+        privacy.click_on_privacy_shield()
+        time.sleep(3)
+        privacy.Scroll_till_end()
+        time.sleep(4)
+        driver.close()
 
 
-#################################  Privacy shield   #################################
-Flag = driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[3]/li/div/sl-sidenav-category-container/div/span[2]")
-driver.execute_script("arguments[0].scrollIntoView();", Flag)
-driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[3]/li/div/sl-sidenav-category-container/div/span[2]").click()
-time.sleep(2)
-driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[3]/li/sl-sidenav-category-links/div/perfect-scrollbar/div/div[1]/ul/li[1]/a").click()
-time.sleep(3)
-driver.close()
+if __name__ == "__main__":
+    driver = get_chrome_driver().launch_chrome()
+    privacy = PrivacyPage(driver)
+    privacy.server_login()
+    privacy.Privacy()
+    privacy.Privacy_Shield()
