@@ -47,7 +47,6 @@ class OH_personal_setting():
         time.sleep(3)
         personal1.click_save()
         time.sleep(5)
-        self.driver.close()
 
 
 if __name__ == "__main__":
@@ -57,7 +56,7 @@ if __name__ == "__main__":
     personal_setting.login_to_OH()
     personal_setting.select_my_profile()
     personal_setting.edit_personal_details()
-
+    driver.close()
 
 
 

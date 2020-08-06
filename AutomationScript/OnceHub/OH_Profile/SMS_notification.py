@@ -22,12 +22,11 @@ class smsnotification():
     def sms_notification_module(self):
         sms = sms_notification(self.driver)
         sms.select_smsnotification_oh()
-        time.sleep(3)
+        time.sleep(5)
         sms.user_notification_toggle()
-        time.sleep(2)
+        time.sleep(4)
         sms.discard_changes()
         time.sleep(5)
-        self.driver.close()
 
 
 if __name__ == "__main__":
@@ -35,3 +34,4 @@ if __name__ == "__main__":
     notification = smsnotification(driver)
     notification.server_login()
     notification.sms_notification_module()
+    driver.close()

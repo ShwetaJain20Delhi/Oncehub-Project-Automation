@@ -36,7 +36,6 @@ class security_Account_lockout_policies():
         time.sleep(3)
         lockout.click_save_button()
         time.sleep(5)
-        driver.close()
 
 
 if __name__ == "__main__":
@@ -45,3 +44,4 @@ if __name__ == "__main__":
     lockout_policies.server_login()
     lockout_policies.security()
     lockout_policies.security_account_lockout()
+    driver.close()

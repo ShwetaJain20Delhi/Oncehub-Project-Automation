@@ -25,7 +25,6 @@ class compliancepage():
         time.sleep(4)
         comp.select_compliance()
         time.sleep(7)
-        self.driver.close()
 
 
 if __name__ == "__main__":
@@ -33,3 +32,4 @@ if __name__ == "__main__":
     compli = compliancepage(driver)
     compli.server_login()
     compli.compliance_module()
+    driver.close()

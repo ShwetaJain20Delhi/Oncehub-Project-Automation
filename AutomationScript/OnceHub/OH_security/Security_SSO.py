@@ -30,7 +30,6 @@ class security_sso_policies():
         session = Security_SSO_Policies(self.driver)
         session.click_on_security_sso_policies()
         time.sleep(5)
-        driver.close()
 
 
 if __name__ == "__main__":
@@ -39,3 +38,4 @@ if __name__ == "__main__":
     sso_policies.server_login()
     sso_policies.security()
     sso_policies.security_SSO()
+    driver.close()

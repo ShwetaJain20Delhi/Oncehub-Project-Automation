@@ -34,7 +34,6 @@ class Privacy_compliance():
         time.sleep(4)
         comp.scroll_till_end()
         time.sleep(3)
-        driver.close()
 
 
 if __name__ == "__main__":
@@ -43,3 +42,4 @@ if __name__ == "__main__":
     privacy_comp.server_login()
     privacy_comp.Privacy()
     privacy_comp.Privacy_Compliance()
+    driver.close()

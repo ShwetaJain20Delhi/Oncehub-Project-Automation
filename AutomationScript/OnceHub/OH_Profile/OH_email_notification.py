@@ -27,7 +27,6 @@ class emailnotification():
         time.sleep(3)
         notification.click_save()
         time.sleep(4)
-        self.driver.close()
 
 
 if __name__ == "__main__":
@@ -35,4 +34,5 @@ if __name__ == "__main__":
     email = emailnotification(driver)
     email.server_login()
     email.Emailnotification()
+    driver.close()
 

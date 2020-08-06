@@ -37,7 +37,6 @@ class Add_Users():
         time.sleep(8)
         user_add.select_users()
         time.sleep(5)
-        driver.close()
 
 
 if __name__ == "__main__":
@@ -46,6 +45,7 @@ if __name__ == "__main__":
     adding_user.server_login()
     adding_user.Users()
     adding_user.add_user()
+    driver.close()
 
 
    ############################ Add user with Inbox email ##########################################

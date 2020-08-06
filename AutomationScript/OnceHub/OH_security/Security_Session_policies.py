@@ -38,7 +38,6 @@ class security_session_policies():
         time.sleep(3)
         session.select_save_button()
         time.sleep(5)
-        driver.close()
 
 
 if __name__ == "__main__":
@@ -47,3 +46,4 @@ if __name__ == "__main__":
     session_policies.server_login()
     session_policies.security()
     session_policies.security_session()
+    driver.close()

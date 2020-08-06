@@ -31,7 +31,6 @@ class passwordpage():
         time.sleep(2)
         passpage.Discard_changes()
         time.sleep(5)
-        self.driver.close()
 
 
 if __name__ == "__main__":
@@ -39,4 +38,5 @@ if __name__ == "__main__":
     password = passwordpage(driver)
     password.server_login()
     password.password_module()
+    driver.close()
 

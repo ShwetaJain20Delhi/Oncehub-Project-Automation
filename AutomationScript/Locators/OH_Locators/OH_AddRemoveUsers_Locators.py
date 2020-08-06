@@ -2,6 +2,8 @@ class users():
     def __init__(self, driver):
         self.driver = driver
     def click_on_Users(self):
+        flag = self.driver.find_element_by_xpath("//span[contains(text(),'Users')]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", flag)
         self.driver.find_element_by_xpath("//span[contains(text(),'Users')]").click()
 
 

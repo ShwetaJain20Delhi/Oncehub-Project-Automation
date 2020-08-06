@@ -44,7 +44,6 @@ class security_password_policies():
         time.sleep(3)
         password.click_discard_button()
         time.sleep(5)
-        driver.close()
 
 
 if __name__ == "__main__":
@@ -53,3 +52,4 @@ if __name__ == "__main__":
     pass_policies.server_login()
     pass_policies.security()
     pass_policies.security_password()
+    driver.close()

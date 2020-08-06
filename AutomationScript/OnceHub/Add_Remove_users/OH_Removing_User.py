@@ -33,7 +33,6 @@ class Remove_Users():
         time.sleep(10)
         remove.click_on_close_button()
         time.sleep(5)
-        self.driver.close()
 
 
 if __name__ == "__main__":
@@ -42,4 +41,5 @@ if __name__ == "__main__":
     removing_user.server_login()
     removing_user.Users()
     removing_user.Remove_user()
+    driver.close()
 

@@ -7,7 +7,7 @@ from AutomationScript.OnceHub.OH_Profile.OH_personal_details import OH_personal_
 from AutomationScript.Webdrivers.Chrome_driver import get_chrome_driver
 
 
-class BillingPage():
+class BillingPay():
     driver = None
 
     def __init__(self, driver):
@@ -30,13 +30,13 @@ class BillingPage():
         bill_notification = Billing_PaymentMethods(self.driver)
         bill_notification.click_on_Billing_payment_method()
         time.sleep(4)
-        self.driver.close()
 
 
 if __name__ == "__main__":
     driver = get_chrome_driver().launch_chrome()
-    billpay = BillingPage(driver)
+    billpay = BillingPay(driver)
     billpay.server_login()
     billpay.Billing()
     billpay.Billing_payment_method()
+    driver.close()
 

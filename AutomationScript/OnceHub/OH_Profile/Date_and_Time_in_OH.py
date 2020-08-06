@@ -23,14 +23,13 @@ class DateAndtime():
         date1.select_datetime()
         time.sleep(2)
         date1.clickontimezone_tochange()
-        time.sleep(2)
+        time.sleep(3)
         date1.search_timezone("India")
-        time.sleep(2)
+        time.sleep(3)
         date1.select_searchedtimezone()
-        time.sleep(2)
+        time.sleep(3)
         date1.click_save()
         time.sleep(5)
-        self.driver.close()
 
 
 if __name__ == "__main__":
@@ -38,3 +37,4 @@ if __name__ == "__main__":
     dateandtime = DateAndtime(driver)
     dateandtime.server_login()
     dateandtime.datetime()
+    driver.close()

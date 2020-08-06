@@ -29,8 +29,6 @@ class Resend_invitation():
         time.sleep(5)
         resend.click_close()
         time.sleep(5)
-        self.driver.close()
-
 
 
 if __name__ == "__main__":
@@ -39,5 +37,6 @@ if __name__ == "__main__":
     resend_invite.server_login()
     resend_invite.Users()
     resend_invite.Resend_invitation_link()
+    driver.close()
 
 

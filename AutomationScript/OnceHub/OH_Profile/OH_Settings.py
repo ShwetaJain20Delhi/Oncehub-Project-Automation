@@ -30,7 +30,6 @@ class oh_settings():
         time.sleep(3)
         setting.select_keepmyaccount_option()
         time.sleep(5)
-        self.driver.close()
 
 
 if __name__ == "__main__":
@@ -38,3 +37,4 @@ if __name__ == "__main__":
     password = oh_settings(driver)
     password.server_login()
     password.Oh_settings_module()
+    driver.close()

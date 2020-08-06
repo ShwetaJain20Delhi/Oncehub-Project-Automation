@@ -7,7 +7,7 @@ from AutomationScript.OnceHub.OH_Profile.OH_personal_details import OH_personal_
 from AutomationScript.Webdrivers.Chrome_driver import get_chrome_driver
 
 
-class BillingPage():
+class BillingTrans():
     driver = None
 
     def __init__(self, driver):
@@ -38,12 +38,12 @@ class BillingPage():
         time.sleep(4)
         bill_trans.close_popup()
         time.sleep(3)
-        driver.close()
 
 
 if __name__ == "__main__":
     driver = get_chrome_driver().launch_chrome()
-    billProd = BillingPage(driver)
+    billProd = BillingTrans(driver)
     billProd.server_login()
     billProd.Billing()
     billProd.Billing_Transaction_page()
+    driver.close()

@@ -45,7 +45,7 @@ class calendar_connection_setting():
         time.sleep(10)
 
     def Oh_reminder_setting(self):
-        reminder = reminder_setting(driver)
+        reminder = reminder_setting(self.driver)
         reminder.click_reminder_dropdown()
         time.sleep(3)
         reminder.select_5minute_reminder()
@@ -68,7 +68,6 @@ class calendar_connection_setting():
         time.sleep(10)
         self.driver.back()
         time.sleep(10)
-        self.driver.close()
 
 
 if __name__ == "__main__":
@@ -80,3 +79,4 @@ if __name__ == "__main__":
     calendar.Oh_reminder_setting()
     calendar.so_sync_setting()
     calendar.so_setup()
+    driver.close()

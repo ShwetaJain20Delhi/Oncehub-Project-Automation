@@ -38,7 +38,6 @@ class Privacy_info():
         time.sleep(3)
         privacy_gdpr.click_save()
         time.sleep(4)
-        driver.close()
 
 
 if __name__ == "__main__":
@@ -47,3 +46,4 @@ if __name__ == "__main__":
     info.server_login()
     info.Privacy()
     info.GDPR_Information()
+    driver.close()

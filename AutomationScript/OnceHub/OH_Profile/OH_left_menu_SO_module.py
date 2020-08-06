@@ -7,7 +7,7 @@ from AutomationScript.Locators.OH_Locators.OH_Profile_Locators import Oh_so_modu
 from AutomationScript.Webdrivers.Chrome_driver import get_chrome_driver
 
 
-class oh_so():
+class OH_scheduleonce():
     driver = None
 
     def __init__(self, driver):
@@ -29,11 +29,11 @@ class oh_so():
         time.sleep(2)
         so_page.discard_changes()
         time.sleep(5)
-        self.driver.close()
 
 
 if __name__ == "__main__":
     driver = get_chrome_driver().launch_chrome()
-    so_module = oh_so(driver)
+    so_module = OH_scheduleonce(driver)
     so_module.server_login()
     so_module.OH_SO_module()
+    driver.close()

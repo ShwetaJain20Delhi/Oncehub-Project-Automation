@@ -39,15 +39,15 @@ class BillingPage():
         bill_notification.close_io_popup()
         time.sleep(4)
         bill_notification.view_sms_log()
-        time.sleep(5)
-        driver.back()
+        time.sleep(8)
+        self.driver.back()
         time.sleep(3)
-        driver.close()
 
 
 if __name__ == "__main__":
     driver = get_chrome_driver().launch_chrome()
-    billProd = BillingPage(driver)
-    billProd.server_login()
-    billProd.Billing()
-    billProd.Billing_product()
+    billprod = BillingPage(driver)
+    billprod.server_login()
+    billprod.Billing()
+    billprod.Billing_product()
+    driver.close()

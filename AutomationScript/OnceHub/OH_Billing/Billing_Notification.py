@@ -8,7 +8,7 @@ from AutomationScript.OnceHub.OH_Profile.OH_personal_details import OH_personal_
 from AutomationScript.Webdrivers.Chrome_driver import get_chrome_driver
 
 
-class BillingPage():
+class BillingNotify():
     driver = None
 
     def __init__(self, driver):
@@ -31,12 +31,12 @@ class BillingPage():
         bill_notification = Billing_notification(self.driver)
         bill_notification.click_on_Billing_Notification()
         time.sleep(4)
-        self.driver.close()
 
 
 if __name__ == "__main__":
     driver = get_chrome_driver().launch_chrome()
-    billNot = BillingPage(driver)
-    billNot.server_login()
-    billNot.Billing()
-    billNot.Billing_notification()
+    billnot = BillingNotify(driver)
+    billnot.server_login()
+    billnot.Billing()
+    billnot.Billing_notification()
+    driver.close()
