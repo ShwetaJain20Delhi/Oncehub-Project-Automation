@@ -2,53 +2,68 @@ from selenium import webdriver
 import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+from AutomationScript.OnceHub.OH_Profile.OH_personal_details import OH_personal_setting
+from AutomationScript.Locators.OH_Locators.Calendar_Locator import ExchangeCalendar, iCloudCalendar
+from AutomationScript.Locators.OH_Locators.Calendar_Locator import reminder_setting
+from AutomationScript.Locators.OH_Locators.Calendar_Locator import so_setup_calendarpage
+from AutomationScript.Locators.OH_Locators.OH_Profile_Locators import Personalsetting
+from AutomationScript.Webdrivers.Chrome_driver import get_chrome_driver
 
 
-driver = webdriver.Chrome()
-driver.set_page_load_timeout(15)
-driver.maximize_window()
-driver.get("https://app3.onceplatform.com/")
-driver.implicitly_wait(35)
+class calendar_connection_setting():
+    driver = None
 
-#################################  Login to OH  #################################
-Ele=driver.find_element_by_name("email")
-driver.find_element_by_name("email").send_keys("death-mad-34@staticso2.com")
-Ele1=driver.find_element_by_name("password")
-driver.find_element_by_name("password").send_keys("testing@123")
-driver.find_element_by_id("signIn").click()
-time.sleep(10)
+    def __init__(self, driver):
+        self.driver = driver
 
-########################### Click on calendar connection page from profile menu  #################################
-driver.find_element_by_xpath("//*[@id='rAccountIcon']").click()
-time.sleep(3)
-driver.find_element_by_xpath("//*[@id='Mobileheader']/div/div[2]/div[2]/ul/li[1]/sl-profile-dropdown/div/div[2]/div[2]/ul/li[2]/a/span").click()
-time.sleep(5)
+    def server_login(self):
+        personal_setting = OH_personal_setting(driver)
+        personal_setting.navigate_to_url()
+        personal_setting.login_to_OH()
+        time.sleep(5)
 
-#################################  iCloud Calendar Connection  #################################
-Flag = driver.find_element_by_xpath("//button[@aria-label='Connect to iCloud Calendar']")
-driver.execute_script("arguments[0].scrollIntoView();", Flag)
-driver.find_element_by_xpath("//button[@aria-label='Connect to iCloud Calendar']").click()
-time.sleep(3)
-driver.find_element_by_id("email").send_keys("sotestoptimus@icloud.com")
-time.sleep(2)
-driver.find_element_by_id("password").send_keys("bjjc-hbdd-zgsg-dscb")
-time.sleep(2)
-driver.find_element_by_xpath("//*[@id='oui-dialog-0']/div[3]/div[2]/button").click()
-time.sleep(8)
+    def Calendarconnection_from_profilemenu(self):
+        personal = Personalsetting(self.driver)
+        personal.click_profile_icon()
+        time.sleep(3)
+        exchangecalendar = ExchangeCalendar(self.driver)
+        exchangecalendar.select_calendarconnection_from_menu()
+        time.sleep(7)
 
-#################################  Changing reminder settings  #################################
-driver.find_element_by_xpath("//*[@id='oui-select-1']/div/div[1]/span").click()
-time.sleep(2)
-driver.find_element_by_xpath("//*[@id='oui-option-3']/span").click()
-time.sleep(3)
+    def Oh_iCloud_calendar_connect(self):
+        icloudcalendar = iCloudCalendar(self.driver)
+        icloudcalendar.click_on_connect_button_for_iCloud()
+        time.sleep(5)
+        icloudcalendar.enter_email("sotestoptimus@icloud.com")
+        time.sleep(3)
+        icloudcalendar.enter_password("bjjc-hbdd-zgsg-dscb")
+        time.sleep(3)
+        icloudcalendar.click_on_connect_button()
+        time.sleep(10)
 
-#################################  Redirect to SO From "Continue setup" button #################################
-Flag = driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[3]/li/div/sl-sidenav-category-container/div/span[2]")
-driver.execute_script("arguments[0].scrollIntoView();", Flag)
-driver.find_element_by_id("ContinueSetupBtn").click()
-time.sleep(10)
-driver.back()
-driver.sleep(10)
-driver.close()
+    def Oh_reminder_setting(self):
+        reminder = reminder_setting(self.driver)
+        reminder.click_reminder_dropdown()
+        time.sleep(3)
+        reminder.select_5minute_reminder()
+        time.sleep(5)
+
+    def so_setup(self):
+        setup_so = so_setup_calendarpage(self.driver)
+        setup_so.scroll_till_so_continueSetup_visible()
+        time.sleep(5)
+        setup_so.select_continue_setup_from_calendarpage()
+        time.sleep(10)
+        self.driver.back()
+        time.sleep(10)
 
 
+if __name__ == "__main__":
+    driver = get_chrome_driver().launch_chrome()
+    calendar = calendar_connection_setting(driver)
+    calendar.server_login()
+    calendar.Calendarconnection_from_profilemenu()
+    calendar.Oh_iCloud_calendar_connect()
+    calendar.Oh_reminder_setting()
+    calendar.so_setup()
+    driver.close()

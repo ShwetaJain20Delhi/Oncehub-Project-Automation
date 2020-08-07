@@ -24,7 +24,9 @@ class reminder_setting():
     def __init__(self, driver):
         self.driver = driver
     def click_reminder_dropdown(self):
-        self.driver.find_element_by_xpath("//span[contains(text(),' 15 minutes ') and @id='selected-values']").click()
+        flag = self.driver.find_element_by_xpath("//oui-icon[@aria-label='Select-arrow-icon']//following::div[@class='oui-select-arrow-wrapper']")
+        self.driver.execute_script("arguments[0].scrollUptoView();", flag)
+        self.driver.find_element_by_xpath("//oui-icon[@aria-label='Select-arrow-icon']//following::div[@class='oui-select-arrow-wrapper']").click()
     def select_5minute_reminder(self):
         self.driver.find_element_by_xpath("//span[@class='oui-option-text' and starts-with(text(),' 5 minutes')]").click()
 
@@ -50,6 +52,39 @@ class so_setup_calendarpage():
     def select_continue_setup_from_calendarpage(self):
         self.driver.find_element_by_id("ContinueSetupBtn").click()
 
+
+class iCloudCalendar():
+    def __init__(self, driver):
+        self.driver = driver
+        self.email = "email"
+        self.password = "password"
+    def click_on_connect_button_for_iCloud(self):
+        flag = self.driver.find_element_by_xpath("//button[@title='Connect to iCloud Calendar']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", flag)
+        self.driver.find_element_by_xpath("//button[@title='Connect to iCloud Calendar']").click()
+    def enter_email(self, email):
+        self.driver.find_element_by_id(self.email).send_keys(email)
+    def enter_password(self, password):
+        self.driver.find_element_by_id(self.password).send_keys(password)
+    def click_on_connect_button(self):
+        self.driver.find_element_by_xpath("//span[contains(text(),' Connect ')]//following::div[@class='oui-dialog-footer-action-right ng-star-inserted']").click()
+
+
+class o365_via_ews_Calendar():
+    def __init__(self, driver):
+        self.driver = driver
+        self.email = "email"
+        self.password = "password"
+    def click_on_connect_button_for_O365_EWS(self):
+        flag = self.driver.find_element_by_xpath("//button[@title='Connect to Office 365 Calendar via EWS']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", flag)
+        self.driver.find_element_by_xpath("//button[@title='Connect to Office 365 Calendar via EWS']").click()
+    def enter_email(self, email):
+        self.driver.find_element_by_id(self.email).send_keys(email)
+    def enter_password(self, password):
+        self.driver.find_element_by_id(self.password).send_keys(password)
+    def click_on_connect_button(self):
+        self.driver.find_element_by_xpath("//span[contains(text(),' Connect ')]//following::div[@class='oui-dialog-footer-action-right ng-star-inserted']").click()
 
 
 
