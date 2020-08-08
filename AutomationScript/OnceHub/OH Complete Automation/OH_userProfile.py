@@ -18,6 +18,7 @@ from AutomationScript.OnceHub.OH_Profile.OH_personal_details import OH_personal_
 from AutomationScript.OnceHub.OH_Profile.Date_and_Time_in_OH import datetime, DateAndtime
 from AutomationScript.OnceHub.OH_Profile.Password_Change import passwordpage
 from AutomationScript.OnceHub.OH_Profile.SMS_notification import smsnotification
+from AutomationScript.OnceHub.OH_Schedule.OH_Schedule_Share_Public_link import share_public_link
 from AutomationScript.OnceHub.OH_security.Security_Account_Lockout_Policies import security_Account_lockout_policies
 from AutomationScript.OnceHub.OH_security.Security_Password_Policy import security_password_policies
 from AutomationScript.OnceHub.OH_security.Security_SSO import security_sso_policies
@@ -143,6 +144,16 @@ class complete_automation():
         removing_user = Remove_Users(driver)
         removing_user.Users()
         removing_user.Remove_user()
+
+    ########## Share public link without personalised link ############
+        public_link = share_public_link(driver)
+        public_link.Schedule_without_personalised_link()
+
+    ########## Share public link personalised link ############
+        public_link.Schedule_with_personalised_link()
+
+    ########## Publish webiste link ############
+        public_link.Publish_your_website()
 
 
 if __name__ == "__main__":

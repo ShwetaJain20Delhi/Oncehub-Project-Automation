@@ -3,7 +3,8 @@ import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from AutomationScript.OnceHub.OH_Profile.OH_personal_details import OH_personal_setting
-from AutomationScript.Locators.OH_Locators.Calendar_Locator import ExchangeCalendar, o365_via_ews_Calendar, sync_2way_setting
+from AutomationScript.Locators.OH_Locators.Calendar_Locator import ExchangeCalendar, o365_via_ews_Calendar, \
+    sync_2way_setting, Notification_connect
 from AutomationScript.Locators.OH_Locators.Calendar_Locator import reminder_setting
 from AutomationScript.Locators.OH_Locators.Calendar_Locator import so_setup_calendarpage
 from AutomationScript.Locators.OH_Locators.OH_Profile_Locators import Personalsetting
@@ -22,12 +23,11 @@ class calendar_connection_setting():
         personal_setting.login_to_OH()
         time.sleep(5)
 
-    def Calendarconnection_from_profilemenu(self):
-        personal = Personalsetting(self.driver)
-        personal.click_profile_icon()
-        time.sleep(3)
-        exchangecalendar = ExchangeCalendar(self.driver)
-        exchangecalendar.select_calendarconnection_from_menu()
+    def Connect_calendar_with_notification_center(self):
+        connect = Notification_connect(self.driver)
+        # connect.click_on_notication_icon()
+        # time.sleep(5)
+        connect.click_connect_button_for_calendar_connection()
         time.sleep(7)
 
     def Oh_O365_via_ews_calendar_connect(self):
@@ -71,7 +71,7 @@ if __name__ == "__main__":
     driver = get_chrome_driver().launch_chrome()
     calendar = calendar_connection_setting(driver)
     calendar.server_login()
-    calendar.Calendarconnection_from_profilemenu()
+    calendar.Connect_calendar_with_notification_center()
     calendar.Oh_O365_via_ews_calendar_connect()
     calendar.Oh_reminder_setting()
     calendar.so_sync_setting()

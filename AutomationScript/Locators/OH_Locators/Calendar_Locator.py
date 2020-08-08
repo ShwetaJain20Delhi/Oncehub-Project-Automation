@@ -1,3 +1,6 @@
+import time
+
+
 class ExchangeCalendar():
     def __init__(self, driver):
         self.driver = driver
@@ -24,9 +27,7 @@ class reminder_setting():
     def __init__(self, driver):
         self.driver = driver
     def click_reminder_dropdown(self):
-        flag = self.driver.find_element_by_xpath("//oui-icon[@aria-label='Select-arrow-icon']//following::div[@class='oui-select-arrow-wrapper']")
-        self.driver.execute_script("arguments[0].scrollUptoView();", flag)
-        self.driver.find_element_by_xpath("//oui-icon[@aria-label='Select-arrow-icon']//following::div[@class='oui-select-arrow-wrapper']").click()
+        self.driver.find_element_by_xpath("//oui-select[@placeholder='Duration']//parent::div[@class='oui-form-field-infix']").click()
     def select_5minute_reminder(self):
         self.driver.find_element_by_xpath("//span[@class='oui-option-text' and starts-with(text(),' 5 minutes')]").click()
 
@@ -35,12 +36,12 @@ class sync_2way_setting():
     def __init__(self, driver):
         self.driver = driver
     def scroll_till_so_advanced_setting_visible(self):
-        flag = self.driver.find_element_by_xpath("//p[contains(text(),'Deleting an event in Exchange/Outlook Calendar cancels the booking in ScheduleOnce')]//following-sibling::div[@class='radioOuter']")
+        flag = self.driver.find_element_by_xpath("//p[contains(text(),'Deleting an event')]//following-sibling::div[@class='radioOuter']")
         self.driver.execute_script("arguments[0].scrollIntoView();", flag)
     def change_togglevalue_for_delete_event(self):
-        self.driver.find_element_by_xpath("//p[contains(text(),'Deleting an event in Exchange/Outlook Calendar cancels the booking in ScheduleOnce')]//following-sibling::div[@class='radioOuter']").click()
+        self.driver.find_element_by_xpath("//p[contains(text(),'Deleting an event')]//following-sibling::div[@class='radioOuter']").click()
     def change_togglevalue_for_change_event(self):
-        self.driver.find_element_by_xpath("//p[contains(text(),'Changing the time in Exchange/Outlook Calendar updates the booking in ScheduleOnce')]//following-sibling::div[@class='radioOuter']").click()
+        self.driver.find_element_by_xpath("//p[contains(text(),'Changing the time')]//following-sibling::div[@class='radioOuter']").click()
 
 
 class so_setup_calendarpage():
@@ -76,8 +77,8 @@ class o365_via_ews_Calendar():
         self.email = "email"
         self.password = "password"
     def click_on_connect_button_for_O365_EWS(self):
-        flag = self.driver.find_element_by_xpath("//button[@title='Connect to Office 365 Calendar via EWS']")
-        self.driver.execute_script("arguments[0].scrollIntoView();", flag)
+        # flag = self.driver.find_element_by_xpath("//button[@title='Connect to Office 365 Calendar via EWS']")
+        # self.driver.execute_script("arguments[0].scrollIntoView();", flag)
         self.driver.find_element_by_xpath("//button[@title='Connect to Office 365 Calendar via EWS']").click()
     def enter_email(self, email):
         self.driver.find_element_by_id(self.email).send_keys(email)
@@ -87,5 +88,27 @@ class o365_via_ews_Calendar():
         self.driver.find_element_by_xpath("//span[contains(text(),' Connect ')]//following::div[@class='oui-dialog-footer-action-right ng-star-inserted']").click()
 
 
+class o365_via_oAuth_Calendar():
+    def __init__(self, driver):
+        self.driver = driver
+    def click_on_connect_button_for_O365_oAuth(self):
+        self.driver.find_element_by_xpath("//button[@ title='Connect to Office 365 Calendar via OAuth']").click()
+    def enter_email(self, email):
+        self.driver.find_element_by_xpath("//input[@type='email']").send_keys(email)
+    def click_next_button(self):
+        self.driver.find_element_by_xpath("//input[@type='submit']").click()
+    def enter_password(self, password):
+        self.driver.find_element_by_xpath("//input[@type='password']").send_keys(password)
+    def click_signin(self):
+        self.driver.find_element_by_xpath("//input[@type='submit']").click()
+    def Accept_permission(self):
+        self.driver.find_element_by_xpath("//input[@type='submit']").click()
 
 
+class Notification_connect():
+    def __init__(self, driver):
+        self.driver = driver
+    def click_on_notication_icon(self):
+        self.driver.find_element_by_xpath("//span[@class ='notification-icon-cont']").click()
+    def click_connect_button_for_calendar_connection(self):
+        self.driver.find_element_by_xpath("//a[contains(text(),'Connect')]").click()

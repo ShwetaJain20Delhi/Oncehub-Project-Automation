@@ -11,7 +11,7 @@ from AutomationScript.Locators.OH_Locators.OH_Profile_Locators import Personalse
 from AutomationScript.Webdrivers.Chrome_driver import get_chrome_driver
 
 
-class calendar_connection_setting():
+class Exchange_calendar_connection_setting():
     driver = None
 
     def __init__(self, driver):
@@ -72,7 +72,7 @@ class calendar_connection_setting():
 
 if __name__ == "__main__":
     driver = get_chrome_driver().launch_chrome()
-    calendar = calendar_connection_setting(driver)
+    calendar = Exchange_calendar_connection_setting(driver)
     calendar.server_login()
     calendar.Calendarconnection_from_profilemenu()
     calendar.Oh_Exchange_calendar_connect()

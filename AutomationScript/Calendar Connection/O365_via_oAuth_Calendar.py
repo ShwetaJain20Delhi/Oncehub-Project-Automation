@@ -1,63 +1,106 @@
-from selenium import webdriver
-import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+from selenium import webdriver
+import time
+from AutomationScript.OnceHub.OH_Profile.OH_personal_details import OH_personal_setting
+from AutomationScript.Locators.OH_Locators.Calendar_Locator import ExchangeCalendar, o365_via_oAuth_Calendar
+from AutomationScript.Locators.OH_Locators.Calendar_Locator import reminder_setting
+from AutomationScript.Locators.OH_Locators.Calendar_Locator import sync_2way_setting
+from AutomationScript.Locators.OH_Locators.Calendar_Locator import so_setup_calendarpage
+from AutomationScript.Locators.OH_Locators.OH_Profile_Locators import Personalsetting
+from AutomationScript.Webdrivers.Chrome_driver import get_chrome_driver
 
 
-driver = webdriver.Chrome()
-driver.set_page_load_timeout(15)
-driver.maximize_window()
-driver.get("https://app2.onceplatform.com/")
-driver.implicitly_wait(35)
+class O365_OAuth_calendar_connection_setting():
+    driver = None
 
-#################################  Login to OH  #################################
-Ele=driver.find_element_by_name("email")
-driver.find_element_by_name("email").send_keys("location-numeral-38@staticso2.com")
-Ele1=driver.find_element_by_name("password")
-driver.find_element_by_name("password").send_keys("testing@123")
-driver.find_element_by_id("signIn").click()
-time.sleep(10)
+    def __init__(self, driver):
+        self.driver = driver
 
-########################### Click on calendar connection page from profile menu  #################################
-driver.find_element_by_xpath("//*[@id='rAccountIcon']").click()
-time.sleep(3)
-driver.find_element_by_xpath("//*[@id='Mobileheader']/div/div[2]/div[2]/ul/li[1]/sl-profile-dropdown/div/div[2]/div[2]/ul/li[2]/a/span").click()
-time.sleep(5)
+    def server_login(self):
+        personal_setting = OH_personal_setting(driver)
+        personal_setting.navigate_to_url()
+        personal_setting.login_to_OH()
+        time.sleep(8)
 
-#################################  O365 via OAUth Calendar Connection  #################################
-main_page = driver.current_window_handle  # save the current window
-driver.find_element_by_xpath("//button[@aria-label='Connect to Office 365 Calendar via OAuth']").click()
-time.sleep(5)
-login_page = None
-for handle in driver.window_handles:
-    if handle != main_page:
-       login_page = handle
-driver.switch_to.window(login_page)    #switch to calendar connection window
-time.sleep(10)
-driver.find_element_by_name("loginfmt").send_keys("shweta.jain@oncehq.com")    #Calendar Email
-time.sleep(3)
-driver.find_element_by_id("idSIButton9").click()          #Click next after entered email
-time.sleep(3)
-driver.find_element_by_name("passwd").send_keys("Schedule@123")                  # Password for email connection
-time.sleep(3)
-driver.find_element_by_id("idSIButton9").click()    #Click on connect button on calendar connection popup
-time.sleep(3)
-driver.find_element_by_id("idBtn_Back").click()
-time.sleep(15)
-driver.switch_to.window(main_page)
-time.sleep(5)
+    def Calendarconnection_from_profilemenu(self):
+        personal = Personalsetting(self.driver)
+        personal.click_profile_icon()
+        time.sleep(3)
+    def Oh_O365_oAuth_calendar_connect(self):
+        exchangecalendar = ExchangeCalendar(self.driver)
+        exchangecalendar.select_calendarconnection_from_menu()
+        time.sleep(5)
+        main_page = driver.current_window_handle
+        oAuth_calendar = o365_via_oAuth_Calendar(self.driver)
+        oAuth_calendar.click_on_connect_button_for_O365_oAuth()
+        time.sleep(5)
+        login_page = None
+        for handle in driver.window_handles:
+            if handle != main_page:
+                login_page = handle
+        driver.switch_to.window(login_page)
+        time.sleep(5)
+        oAuth_calendar.enter_email("shweta.jain@oncehq.com")
+        time.sleep(3)
+        oAuth_calendar.click_next_button()
+        time.sleep(3)
+        oAuth_calendar.enter_password("Schedule@123")
+        time.sleep(3)
+        oAuth_calendar.click_signin()
+        time.sleep(3)
+        oAuth_calendar.Accept_permission()
+        time.sleep(3)
+        driver.switch_to.window(main_page)
+        time.sleep(10)
 
-#################################  Changing reminder settings  #################################
-driver.find_element_by_xpath("//*[@id='oui-select-1']/div/div[1]/span").click()
-time.sleep(2)
-driver.find_element_by_xpath("//*[@id='oui-option-3']/span").click()
-time.sleep(3)
+    def Oh_reminder_setting(self):
+        reminder = reminder_setting(self.driver)
+        reminder.click_reminder_dropdown()
+        time.sleep(3)
+        reminder.select_5minute_reminder()
+        time.sleep(5)
 
-#################################  Click on setup page  #################################
-Flag = driver.find_element_by_xpath("/html/body/oh-root/div[2]/sl-sidenav-container/sl-sidenav/div/perfect-scrollbar/div/div[1]/oh-sidebar/div[2]/div[3]/ul/sl-sidenav-category[3]/li/div/sl-sidenav-category-container/div/span[2]")
-driver.execute_script("arguments[0].scrollIntoView();", Flag)
-driver.find_element_by_id("ContinueSetupBtn").click()
-time.sleep(10)
-driver.back()
-driver.sleep(10)
-driver.close()
+    def so_setup(self):
+        setup_so = so_setup_calendarpage(self.driver)
+        setup_so.scroll_till_so_continueSetup_visible()
+        time.sleep(5)
+        setup_so.select_continue_setup_from_calendarpage()
+        time.sleep(10)
+        self.driver.back()
+        time.sleep(10)
+
+
+if __name__ == "__main__":
+    driver = get_chrome_driver().launch_chrome()
+    calendar = O365_OAuth_calendar_connection_setting(driver)
+    calendar.server_login()
+    calendar.Calendarconnection_from_profilemenu()
+    calendar.Oh_O365_oAuth_calendar_connect()
+    calendar.Oh_reminder_setting()
+    calendar.so_setup()
+    driver.close()
+
+
+# #################################  O365 via OAUth Calendar Connection  #################################
+# main_page = driver.current_window_handle  # save the current window
+# driver.find_element_by_xpath("//button[@aria-label='Connect to Office 365 Calendar via OAuth']").click()
+# time.sleep(5)
+# login_page = None
+# for handle in driver.window_handles:
+#     if handle != main_page:
+#        login_page = handle
+# driver.switch_to.window(login_page)    #switch to calendar connection window
+# time.sleep(10)
+# driver.find_element_by_name("loginfmt").send_keys("shweta.jain@oncehq.com")    #Calendar Email
+# time.sleep(3)
+# driver.find_element_by_id("idSIButton9").click()          #Click next after entered email
+# time.sleep(3)
+# driver.find_element_by_name("passwd").send_keys("Schedule@123")                  # Password for email connection
+# time.sleep(3)
+# driver.find_element_by_id("idSIButton9").click()    #Click on connect button on calendar connection popup
+# time.sleep(3)
+# driver.find_element_by_id("idBtn_Back").click()
+# time.sleep(15)
+# driver.switch_to.window(main_page)
+# time.sleep(5)
