@@ -17,14 +17,17 @@ class OH_personal_setting():
 
     def navigate_to_url(self):
         self.driver.maximize_window()
-        self.driver.get("https://app2.onceplatform.com/")
-        self.driver.implicitly_wait(35)
+        self.driver.get("https://app3.onceplatform.com/")
+        self.driver.implicitly_wait(40)
+        time.sleep(4)
 
     #################################  Login to OH  #################################
     def login_to_OH(self):
         login = Applicationlogin(self.driver)
-        login.enter_username("location-numeral-38@staticso2.com")
+        login.enter_username("basis-studied-57@staticso2.com")
+        time.sleep(3)
         login.enter_password("testing@123")
+        time.sleep(3)
         login.click_login()
         time.sleep(10)
 
