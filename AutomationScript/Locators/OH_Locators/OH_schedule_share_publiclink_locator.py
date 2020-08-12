@@ -57,12 +57,19 @@ class Booking_form():
     def enter_email(self, email):
         self.driver.find_element_by_name(self.email).send_keys(email)
     def click_done(self):
+        flag = self.driver.find_element_by_xpath("// button[ @ title = 'Confirm your booking request']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", flag)
         self.driver.find_element_by_xpath("// button[ @ title = 'Confirm your booking request']").click()
-    def copy_bookingID(self):
-        booking = self.driver.find_element_by_xpath("// small[contains(text(), 'Booking ID')]")
-        booking.send_keys(Keys.CONTROL + "a")
-        booking.send_keys(Keys.CONTROL + "c")
-        self.driver.send_keys(Keys.CONTROL + "w")
+        self.driver.close()
+        self.driver.switch_to_window(self.driver.window_handles[0])
+    # def copy_bookingID(self):
+    #     self.driver.find_element_by_xpath("// small[contains(text(), 'Booking ID')]").send_keys(Keys.CONTROL + "c")
+    #     self.driver.close()
+    #     self.driver.switch_to_window(self.driver.window_handles[0])
+    # def paste_booking_id_in_activity_page(self):
+    #     paste = self.driver.find_element_by_name("freeSearchText")
+    #     paste.send_keys(Keys.CONTROL + "v")
+    #     paste.send_keys(Keys.ENTER)
 
 class share_with_perosnalised_link():
     def __init__(self, driver):
@@ -75,6 +82,11 @@ class share_with_perosnalised_link():
         self.driver.find_element_by_id(self.name).send_keys(name)
     def enter_customer_email(self, email):
         self.driver.find_element_by_id(self.email).send_keys(email)
+    def clickcontinue(self):
+        self.driver.find_element_by_xpath("// button[ @ title = 'Proceed to next step']").click()
+    def close_meeting_tab_switch_to_application_tab(self):
+        self.driver.close()
+        self.driver.switch_to_window(self.driver.window_handles[0])
 
 
 class schedule_Publish():
@@ -84,11 +96,4 @@ class schedule_Publish():
         self.driver.find_element_by_xpath("//a[contains(text(),'Publish on your website')]").click()
 
 
-# class switch_new_tab():
-#     def __init__(self, driver):
-#         self.driver = driver
-#     def open_new_window(self):
-#         self.driver.execute_script("window.open('');")
-#         self.driver.switch_to_window(self.driver.window_handles[1])
-#         self.driver.get()
 
