@@ -1,3 +1,5 @@
+from selenium.webdriver import ActionChains
+
 class chatonce():
     def __init__(self, driver):
         self.driver = driver
@@ -37,13 +39,14 @@ class text_message():
     def click_back_button_on_interaction(self):
         self.driver.find_element_by_xpath("//button[@class='back_btn capitalize oui-icon-button oui-primary']").click()
 
+
 class Questions_option():
     def __init__(self, driver):
         self.driver = driver
     def select_messages_option(self):
         self.driver.find_element_by_xpath("//li[contains(text(),'Questions')]").click()
     def select_single_select_option(self):
-        self.driver.find_element_by_xpath("//strong[contains(text(),'Single select')]").click()
+        self.driver.find_element_by_xpath("//strong[contains(text(),'Text question')]").click()
     def enter_internal_label(self, label):
         self.driver.find_element_by_id("interactionName").send_keys(label)
     def enter_message_text(self, text):
@@ -52,3 +55,55 @@ class Questions_option():
         self.driver.find_element_by_xpath("// span[contains(text(), 'Save')]").click()
     def click_back_button_on_interaction(self):
         self.driver.find_element_by_xpath("//button[@class='back_btn capitalize oui-icon-button oui-primary']").click()
+
+
+class Actions_option():
+    def __init__(self, driver):
+        self.driver = driver
+    def select_messages_option(self):
+        self.driver.find_element_by_xpath("//li[contains(text(),' Actions ')]").click()
+    def select_single_select_option(self):
+        self.driver.find_element_by_xpath("//strong[contains(text(),'Schedule')]").click()
+    def enter_internal_label(self, label):
+        self.driver.find_element_by_id("interactionName").send_keys(label)
+    def click_on_dropdown_for_master_page(self):
+        flag = self.driver.find_element_by_xpath("//oui-select[ @ formcontrolname = 'scheduleActionMasterPage']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", flag)
+        self.driver.find_element_by_xpath("//oui-select[ @ formcontrolname = 'scheduleActionMasterPage']").click()
+    def select_master_page(self):
+        self.driver.find_element_by_xpath("//span[contains(text(), 'Shweta_Test111')]").click()
+    def select_Event_type_drop_down(self):
+        self.driver.find_element_by_xpath("//oui-select[@formcontrolname='scheduleActionEventRule']").click()
+    def select_event_type(self):
+        self.driver.find_element_by_xpath("//span[contains(text(),'15-minute meeting')]").click()
+    def click_save_button(self):
+        self.driver.find_element_by_xpath("//span[contains(text(),'Save')]").click()
+    def click_back_button_on_interaction(self):
+        self.driver.find_element_by_xpath("//button[@class='back_btn capitalize oui-icon-button oui-primary']").click()
+
+
+class adjust_drop_down():
+    def __init__(self, driver):
+        self.driver = driver
+    def drag_conversations_to_interactions_option(self):
+        flag = self.driver.find_element_by_xpath("//oui-icon[@aria-label='Message-24']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", flag)
+        source_element = self.driver.find_element_by_xpath("//oui-icon[@aria-label='Message-24']")
+        flag = self.driver.find_element_by_id("reachOutSection")
+        self.driver.execute_script("arguments[0].scrollIntoView();", flag)
+        target_element = self.driver.find_element_by_id("reachOutSection")
+        actions = ActionChains(self.driver)
+        actions.click_and_hold(source_element).pause(20).move_to_element(target_element).release(target_element).perform()
+        # actions.drag_and_drop(source_element, target_element).perform()
+        flag = self.driver.find_element_by_xpath("//oui-icon[@aria-label='Text-question-24']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", flag)
+        source_element1 = self.driver.find_element_by_xpath("//oui-icon[@aria-label='Text-question-24']")
+        target_element1 = self.driver.find_element_by_id("reachOutSection")
+        actions = ActionChains(self.driver)
+        # actions.drag_and_drop(source_element1, target_element1).perform()
+        actions.click_and_hold(source_element1).pause(20).move_to_element(target_element1).release(target_element1).perform()
+
+
+
+
+

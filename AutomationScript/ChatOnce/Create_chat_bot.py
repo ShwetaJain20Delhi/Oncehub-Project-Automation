@@ -1,7 +1,8 @@
 import time
 
 from AutomationScript.Locators.OH_Locators.OH_Profile_Locators import Applicationlogin
-from AutomationScript.Locators.CO_Locators.ChatOnce_locator import chatonce, chatbot, text_message, Questions_option
+from AutomationScript.Locators.CO_Locators.ChatOnce_locator import chatonce, chatbot, text_message, Questions_option, \
+    Actions_option, adjust_drop_down
 from AutomationScript.Webdrivers.Chrome_driver import get_chrome_driver
 
 
@@ -45,6 +46,7 @@ class ChatOnce_bot():
         co2.enter_bot_name("Test")
         time.sleep(5)
         co2.click_create()
+        time.sleep(5)
     ############# select text message option ###################
         co3 = text_message(self.driver)
         co3.select_messages_option()
@@ -67,12 +69,50 @@ class ChatOnce_bot():
         time.sleep(3)
         co4.enter_internal_label("Question 1")
         time.sleep(3)
-        co4.enter_message_text("Do you want to schedule any meeting??")
+        co4.enter_message_text("How's your day today??")
         time.sleep(3)
         co4.click_save()
         time.sleep(3)
         co4.click_back_button_on_interaction()
         time.sleep(3)
+############# select text message option ###################
+        # co3 = text_message(self.driver)
+        # co3.select_messages_option()
+        # time.sleep(3)
+        # co3.select_text_message_option()
+        # time.sleep(5)
+        # co3.enter_internal_label("Label 2")
+        # time.sleep(3)
+        # co3.enter_message_text("Please schedule the meeting with us for further investigation")
+        # time.sleep(3)
+        # co3.click_save()
+        # time.sleep(3)
+        # co3.click_back_button_on_interaction()
+        # time.sleep(5)
+############# select Actions option ###################
+        co4 = Actions_option(self.driver)
+        co4.select_messages_option()
+        time.sleep(3)
+        co4.select_single_select_option()
+        time.sleep(3)
+        co4.enter_internal_label("Action Performed")
+        time.sleep(3)
+        co4.click_on_dropdown_for_master_page()
+        time.sleep(3)
+        co4.select_master_page()
+        time.sleep(3)
+        co4.select_Event_type_drop_down()
+        time.sleep(3)
+        co4.select_event_type()
+        time.sleep(3)
+        co4.click_save_button()
+        time.sleep(10)
+        co4.click_back_button_on_interaction()
+        time.sleep(3)
+############# drag Conversation to interaction panel option ###################
+        drag = adjust_drop_down(self.driver)
+        drag.drag_conversations_to_interactions_option()
+        time.sleep(10)
 
 
 if __name__ == "__main__":
