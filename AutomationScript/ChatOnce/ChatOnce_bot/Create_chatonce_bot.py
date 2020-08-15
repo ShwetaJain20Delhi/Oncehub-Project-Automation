@@ -18,7 +18,7 @@ class Create_ChatOnce_bot():
     def navigate_to_url(self):
         self.driver.maximize_window()
         self.driver.get("https://app3.onceplatform.com/")
-        self.driver.implicitly_wait(40)
+        self.driver.implicitly_wait(50)
         time.sleep(4)
 
     #################################  Login to OH  #################################
@@ -37,7 +37,7 @@ class Create_ChatOnce_bot():
         co1.click_on_setupoption_from_setup()
         time.sleep(3)
         co1.select_chatonce()
-        time.sleep(5)
+        time.sleep(8)
 
     def create_bot(self):
     ############### create bot from scratch #####################

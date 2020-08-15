@@ -16,10 +16,10 @@ class bot_3dot_edit():
     def bot_edit(self):
         dot = Bot_3dot_functionality(self.driver)
         dot.click_on_bot_3dot_option()
-        time.sleep(3)
+        time.sleep(8)
         edit = Bot_3dot_edit(self.driver)
         edit.select_edit_option()
-        time.sleep(10)
+        time.sleep(15)
 
     def back_to_lobby_page(self):
         lobby = return_to_Bot_lobby_page(self.driver)

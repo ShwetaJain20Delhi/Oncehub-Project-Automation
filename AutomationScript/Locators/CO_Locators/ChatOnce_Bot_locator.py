@@ -98,9 +98,11 @@ class Preview_Chat():
         self.driver = driver
     def click_preview_button(self):
         self.driver.find_element_by_xpath("//span[contains(text(),' Preview ')]").click()
-    def enter_details(self, detail):
-        self.driver.find_element_by_xpath("//div[@class='chat-footer']//following-sibling::div[1]//child::textarea").send_keys(detail)
-        self.driver.find_element_by_xpath("//div[@class='chat-footer']//following-sibling::div[1]//child::textarea").send_keys(Keys.ENTER)
+    def enter_details(self, information):
+        self.driver.switch_to_window().alert()
+        pinfo = self.driver.find_element_by_xpath("//div[@class='chat-footer']//following-sibling::div[1]//child::textarea")
+        pinfo.send_keys(information)
+        pinfo.send_keys(Keys.ENTER)
     def enter_email_address(self, email):
         self.driver.find_element_by_xpath("//input[@placeholder='Enter email address']").send_keys(email)
         self.driver.find_element_by_xpath("//input[@placeholder='Enter email address']").send_keys(Keys.ENTER)
