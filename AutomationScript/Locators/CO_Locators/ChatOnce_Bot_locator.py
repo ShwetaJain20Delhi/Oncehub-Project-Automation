@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 
@@ -82,7 +84,17 @@ class Actions_option():
         self.driver.execute_script("arguments[0].scrollIntoView();", flag)
         self.driver.find_element_by_xpath("//oui-select[ @ formcontrolname = 'scheduleActionMasterPage']").click()
     def select_master_page(self):
-        self.driver.find_element_by_xpath("//span[contains(text(), 'Shweta_Test111')]").click()
+        Master_page = self.driver.find_element_by_xpath("//span[contains(text(), '3222121')]")
+        if Master_page.is_displayed():
+            print("page is found")
+            Master_page.click()
+            time.sleep(4)
+        else:
+            print("page is not found")
+            self.driver.find_element_by_xpath("//span[contains(text(),'New Master page')]").click()
+            time.sleep(4)
+            self.driver.switch_to_alert().accept()
+            time.sleep(10)
     def select_Event_type_drop_down(self):
         self.driver.find_element_by_xpath("//oui-select[@formcontrolname='scheduleActionEventRule']").click()
     def select_event_type(self):
@@ -182,6 +194,8 @@ class Bot_3dot_Delete():
         self.driver.find_element_by_xpath("//span[contains(text(),'Delete bot')]").click()
     def click_close_button(self):
         self.driver.find_element_by_xpath("//span[contains(text(),'Close')]").click()
+
+
 
 
 

@@ -123,3 +123,10 @@ class logout():
         self.driver.find_element_by_xpath("//*[@id='rAccountIcon']").click()
     def click_signout(self):
         self.driver.find_element_by_xpath("//span[contains(text(),'Sign out')]").click()
+
+
+class select_CO_product():
+    def __init__(self, driver):
+        self.driver = driver
+    def select_co_product(self):
+        self.driver.find_element_by_id("co-get-started").click()

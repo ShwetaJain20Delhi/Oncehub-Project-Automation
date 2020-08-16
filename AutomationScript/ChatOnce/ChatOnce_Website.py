@@ -19,6 +19,8 @@ class Chatonce_Website():
         time.sleep(7)
     def chatoncewebsite(self):
         web = website(self.driver)
+        web.click_on_website()
+        time.sleep(5)
         web.click_on_Add_website()
         time.sleep(3)
         web.enter_webiste_name("Test")

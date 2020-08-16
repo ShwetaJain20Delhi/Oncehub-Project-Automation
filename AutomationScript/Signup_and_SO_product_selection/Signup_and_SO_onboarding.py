@@ -21,7 +21,7 @@ class Signup_SO_Onboarding():
         inbox.copy_inbox_email()
         time.sleep(3)
 
-    def Signup_onboarding(self):
+    def Signup_with_new_user(self):
         onboard = Signup(self.driver)
         onboard.Navigate_to_URL()
         time.sleep(3)
@@ -50,7 +50,7 @@ class Signup_SO_Onboarding():
         timezone.click_on_change_timezone()
         time.sleep(3)
         timezone.click_on_dropdown()
-        time.sleep(2)
+        time.sleep(4)
         timezone.search_India("India")
         time.sleep(3)
         timezone.select_timezone()
@@ -115,7 +115,7 @@ if __name__ == "__main__":
     driver = get_chrome_driver().launch_chrome()
     Onboard_SO = Signup_SO_Onboarding(driver)
     Onboard_SO.Inbox_email()
-    Onboard_SO.Signup_onboarding()
+    Onboard_SO.Signup_with_new_user()
     Onboard_SO.select_product()
     Onboard_SO.select_timezone()
     Onboard_SO.connect_Exchange_calendar()
