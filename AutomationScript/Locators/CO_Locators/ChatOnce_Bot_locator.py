@@ -1,10 +1,11 @@
 import time
 
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 
 
-class chatonce():
+class Chatonce():
     def __init__(self, driver):
         self.driver = driver
     def click_on_setupoption_from_setup(self):
@@ -84,17 +85,15 @@ class Actions_option():
         self.driver.execute_script("arguments[0].scrollIntoView();", flag)
         self.driver.find_element_by_xpath("//oui-select[ @ formcontrolname = 'scheduleActionMasterPage']").click()
     def select_master_page(self):
-        Master_page = self.driver.find_element_by_xpath("//span[contains(text(), '3222121')]")
-        if Master_page.is_displayed():
-            print("page is found")
-            Master_page.click()
-            time.sleep(4)
-        else:
+        try:
+            # self.driver.find_element_by_xpath("//span[contains(text(),'Shweta_Test111')]").click()
+            Master_page = self.driver.find_element_by_xpath("//span[contains(text(),'Shweta_Automation')]")
+            if Master_page.is_displayed():
+                print("page is found")
+                Master_page.click()
+        except NoSuchElementException:
             print("page is not found")
-            self.driver.find_element_by_xpath("//span[contains(text(),'New Master page')]").click()
-            time.sleep(4)
-            self.driver.switch_to_alert().accept()
-            time.sleep(10)
+            self.driver.find_element_by_xpath("//span[contains(text(),'shweta_a')]").click()
     def select_Event_type_drop_down(self):
         self.driver.find_element_by_xpath("//oui-select[@formcontrolname='scheduleActionEventRule']").click()
     def select_event_type(self):
@@ -110,10 +109,10 @@ class Preview_Chat():
         self.driver = driver
     def click_preview_button(self):
         self.driver.find_element_by_xpath("//span[contains(text(),' Preview ')]").click()
-    def enter_details(self, information):
-        self.driver.switch_to_window().alert()
+    def enter_details(self, data):
+        self.driver.switch_to_frame("co-widget-iframe")
         pinfo = self.driver.find_element_by_xpath("//div[@class='chat-footer']//following-sibling::div[1]//child::textarea")
-        pinfo.send_keys(information)
+        pinfo.send_keys(data)
         pinfo.send_keys(Keys.ENTER)
     def enter_email_address(self, email):
         self.driver.find_element_by_xpath("//input[@placeholder='Enter email address']").send_keys(email)
@@ -121,7 +120,7 @@ class Preview_Chat():
     def Select_timeZone(self):
         self.driver.find_element_by_xpath("//div[@class='time-zone-container']").click()
     def click_on_dropdown(self):
-        self.driver.find_element_by_xpath("//label[@class ='custom-select']").click()
+        self.driver.find_element_by_id("custom-select-element").click()
     def search_India(self):
         flag = self.driver.find_element_by_xpath("//li[contains(text(),'India')]")
         self.driver.execute_script("arguments[0].scrollIntoView();", flag)
@@ -134,6 +133,7 @@ class Preview_Chat():
         self.driver.find_element_by_xpath("//button[contains(text(),'Confirm')]").click()
     def close_preview_bot(self):
         self.driver.find_element_by_xpath("//span[@class='chat-cross-icon']").click()
+        self.driver.switch_to_default_content()
 
 
 class toggle_on_publish_button():

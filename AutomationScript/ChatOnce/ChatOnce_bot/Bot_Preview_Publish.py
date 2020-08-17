@@ -18,11 +18,11 @@ class bot_Publish_Preview():
     ############# Preview option ###################
         preview = Preview_Chat(self.driver)
         preview.click_preview_button()
-        time.sleep(20)
-        preview.enter_details("I'm Good")
+        time.sleep(10)
+        preview.enter_details("I am good, thanks!!")
         time.sleep(5)
         preview.enter_email_address("Testinginviteoncetesting@gmail.com")
-        time.sleep(5)
+        time.sleep(10)
         preview.Select_timeZone()
         time.sleep(5)
         preview.click_on_dropdown()
@@ -34,7 +34,7 @@ class bot_Publish_Preview():
         preview.select_time_slot()
         time.sleep(5)
         preview.click_confirm()
-        time.sleep(20)
+        time.sleep(40)
         preview.close_preview_bot()
         time.sleep(7)
 

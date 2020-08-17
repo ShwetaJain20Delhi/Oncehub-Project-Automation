@@ -26,7 +26,7 @@ if __name__ == "__main__":
     chatbot_website.create_bot()
     publish_preview = bot_Publish_Preview(driver)
     publish_preview.bot_publish()
-    # publish_preview.bot_Preview()
+    publish_preview.bot_Preview()
     edit = bot_3dot_edit(driver)
     edit.back_to_lobby_page()
     edit.bot_edit()
