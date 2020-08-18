@@ -109,8 +109,9 @@ class Preview_Chat():
         self.driver = driver
     def click_preview_button(self):
         self.driver.find_element_by_xpath("//span[contains(text(),' Preview ')]").click()
-    def enter_details(self, data):
+    def switch_to_bot(self):
         self.driver.switch_to_frame("co-widget-iframe")
+    def enter_details(self, data):
         pinfo = self.driver.find_element_by_xpath("//div[@class='chat-footer']//following-sibling::div[1]//child::textarea")
         pinfo.send_keys(data)
         pinfo.send_keys(Keys.ENTER)
@@ -128,7 +129,7 @@ class Preview_Chat():
     def click_continue(self):
         self.driver.find_element_by_xpath("// button[contains(text(), 'Continue')]").click()
     def select_time_slot(self):
-        self.driver.find_element_by_xpath("// li[contains(text(), '10:00') and @class ='border-style border-primary text-secondary bg-primary-hover']").click()
+        self.driver.find_element_by_xpath("// li[contains(text(), '10:15') and @class ='border-style border-primary text-secondary bg-primary-hover']").click()
     def click_confirm(self):
         self.driver.find_element_by_xpath("//button[contains(text(),'Confirm')]").click()
     def close_preview_bot(self):
