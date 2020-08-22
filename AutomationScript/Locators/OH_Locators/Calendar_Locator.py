@@ -92,6 +92,7 @@ class o365_via_oAuth_Calendar():
     def __init__(self, driver):
         self.driver = driver
     def click_on_connect_button_for_O365_oAuth(self):
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         self.driver.find_element_by_xpath("//button[@ title='Connect to Office 365 Calendar via OAuth']").click()
     def enter_email(self, email):
         self.driver.find_element_by_xpath("//input[@type='email']").send_keys(email)
