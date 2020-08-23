@@ -22,15 +22,10 @@ class AuthenticationPage():
     def authentication_module(self):
         auth = select_authentication(self.driver)
         auth.click_authentication()
-        time.sleep(4)
         auth.enable_2factor_toggle()
-        time.sleep(5)
         auth.enter_password("testing@123")
-        time.sleep(5)
         auth.click_submit_button()
-        time.sleep(5)
         auth.discard_changes()
-        time.sleep(3)
 
 
 if __name__ == "__main__":

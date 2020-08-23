@@ -22,9 +22,7 @@ class compliancepage():
     def compliance_module(self):
         comp = compliance(self.driver)
         comp.movescrollbar_tillcompliancevisible()
-        time.sleep(4)
         comp.select_compliance()
-        time.sleep(7)
 
 
 if __name__ == "__main__":

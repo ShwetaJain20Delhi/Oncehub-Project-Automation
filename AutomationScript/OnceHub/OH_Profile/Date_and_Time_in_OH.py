@@ -21,15 +21,10 @@ class DateAndtime():
     def datetime(self):
         date1 = datetime(self.driver)
         date1.select_datetime()
-        time.sleep(2)
         date1.clickontimezone_tochange()
-        time.sleep(3)
         date1.search_timezone("India")
-        time.sleep(3)
         date1.select_searchedtimezone()
-        time.sleep(3)
         date1.click_save()
-        time.sleep(5)
 
 
 if __name__ == "__main__":

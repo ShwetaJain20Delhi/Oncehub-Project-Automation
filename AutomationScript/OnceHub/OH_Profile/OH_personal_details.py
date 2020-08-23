@@ -2,6 +2,8 @@ from selenium import webdriver
 import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.support.wait import WebDriverWait
+
 from AutomationScript.Locators.OH_Locators.OH_Profile_Locators import Applicationlogin
 from AutomationScript.Locators.OH_Locators.OH_Profile_Locators import Personalsetting
 from AutomationScript.Webdrivers.Chrome_driver import get_chrome_driver
@@ -19,37 +21,28 @@ class OH_personal_setting():
         self.driver.maximize_window()
         self.driver.get("https://app2.onceplatform.com/")
         self.driver.implicitly_wait(40)
-        time.sleep(4)
+        WebDriverWait(self.driver, 30)
 
     #################################  Login to OH  #################################
     def login_to_OH(self):
         login = Applicationlogin(self.driver)
         login.enter_username("location-numeral-38@staticso2.com")
-        time.sleep(3)
         login.enter_password("testing@123")
-        time.sleep(3)
         login.click_login()
-        time.sleep(10)
 
 #################################  Edit Profile settings  #################################
 
     def select_my_profile(self):
         personal = Personalsetting(self.driver)
         personal.click_profile_icon()
-        time.sleep(3)
         personal.select_myprofile()
-        time.sleep(5)
 
     def edit_personal_details(self):
         personal1 = Personalsetting(self.driver)
         personal1.click_3dot()
-        time.sleep(5)
         personal1.select_editpersonaldetails_option()
-        time.sleep(3)
         personal1.editpersonaldetails("Admin")
-        time.sleep(3)
         personal1.click_save()
-        time.sleep(5)
 
 
 if __name__ == "__main__":

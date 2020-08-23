@@ -1,3 +1,8 @@
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
+
+
 class Applicationlogin():
     def __init__(self, driver):
         self.driver = driver
@@ -5,11 +10,14 @@ class Applicationlogin():
         self.password = "password"
         self.login_button_id = "signIn"
     def enter_username(self, username):
-        self.driver.find_element_by_name(self.username).send_keys(username)
+        wait = WebDriverWait(self.driver, 10)
+        wait.until(ec.presence_of_element_located((By.NAME, self.username))).send_keys(username)
     def enter_password(self, password):
-        self.driver.find_element_by_name(self.password).send_keys(password)
+        wait = WebDriverWait(self.driver, 10)
+        wait.until(ec.presence_of_element_located((By.NAME, self.password))).send_keys(password)
     def click_login(self):
-        self.driver.find_element_by_id("signIn").click()
+        wait = WebDriverWait(self.driver, 10)
+        wait.until(ec.presence_of_element_located((By.ID, self.login_button_id))).click()
 
 
 class Personalsetting():
@@ -17,22 +25,24 @@ class Personalsetting():
         self.driver = driver
         self.username_textbox_lastname = "lastName"
     def click_profile_icon(self):
-        self.driver.implicitly_wait(20)
-        self.driver.find_element_by_xpath("//*[@id='rAccountIcon']").click()
+        wait = WebDriverWait(self.driver, 20)
+        wait.until(ec.presence_of_element_located((By.XPATH, "//*[@id='rAccountIcon']"))).click()
     def select_myprofile(self):
-        self.driver.find_element_by_xpath("//span[contains(text(),'My profile')]").click()
+        wait = WebDriverWait(self.driver, 20)
+        wait.until(ec.presence_of_element_located((By.XPATH, "//span[contains(text(),'My profile')]"))).click()
     def click_3dot(self):
-        self.driver.find_element_by_xpath("//button[@title='User menu']").click()
+        wait = WebDriverWait(self.driver, 20)
+        wait.until(ec.presence_of_element_located((By.XPATH, "//button[@title='User menu']"))).click()
     def select_editpersonaldetails_option(self):
-        self.driver.implicitly_wait(20)
-        self.driver.find_element_by_xpath("//span[contains(text(),'Edit personal details')]").click()
+        wait = WebDriverWait(self.driver, 20)
+        wait.until(ec.presence_of_element_located((By.XPATH, "//span[contains(text(),'Edit personal details')]"))).click()
     def editpersonaldetails(self, lastname):
-        self.driver.implicitly_wait(20)
-        self.driver.find_element_by_name(self.username_textbox_lastname).clear()
-        self.driver.find_element_by_name(self.username_textbox_lastname).send_keys(lastname)
+        wait = WebDriverWait(self.driver, 20)
+        wait.until(ec.presence_of_element_located((By.NAME, self.username_textbox_lastname))).clear()
+        wait.until(ec.presence_of_element_located((By.NAME, self.username_textbox_lastname))).send_keys(lastname)
     def click_save(self):
-        self.driver.implicitly_wait(20)
-        self.driver.find_element_by_xpath("//button[@title='Save']").click()
+        wait = WebDriverWait(self.driver, 20)
+        wait.until(ec.presence_of_element_located((By.XPATH, "//button[@title='Save']"))).click()
 
 
 class select_authentication():
@@ -40,30 +50,42 @@ class select_authentication():
         self.driver = driver
         self.password_textbox = "current-password"
     def click_authentication(self):
-        self.driver.find_element_by_xpath("//a[@href='https://app2.onceplatform.com/users/user-profile/USR-KE7N20HJ59/general/authentication']").click()
+        wait = WebDriverWait(self.driver, 20)
+        wait.until(ec.presence_of_element_located((By.XPATH, "//a[@href='https://app2.onceplatform.com/users/user-profile/USR-KE7N20HJ59/general/authentication']"))).click()
     def enable_2factor_toggle(self):
-        self.driver.find_element_by_xpath("//span[@class='oui-slider round']").click()
+        wait = WebDriverWait(self.driver, 20)
+        wait.until(ec.presence_of_element_located((By.XPATH, "//span[@class='oui-slider round']"))).click()
     def enter_password(self, password):
-        self.driver.find_element_by_id(self.password_textbox).send_keys(password)
+        wait = WebDriverWait(self.driver, 20)
+        wait.until(ec.presence_of_element_located((By.ID, self.password_textbox))).send_keys(password)
     def click_submit_button(self):
-        self.driver.find_element_by_xpath("//button[@class='oui-button oui-primary']").click()
+        wait = WebDriverWait(self.driver, 20)
+        wait.until(ec.presence_of_element_located((By.XPATH, "//button[@class='oui-button oui-primary']"))).click()
     def discard_changes(self):
-        self.driver.find_element_by_xpath("//span[@class='oui-button-wrapper' and contains(text(),'Discard')]").click()
-
+        flag = self.driver.find_element_by_xpath("//span[@class='oui-button-wrapper' and contains(text(),'Discard')]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", flag)
+        wait = WebDriverWait(self.driver, 30)
+        wait.until(ec.visibility_of_element_located((By.XPATH, "//span[@class='oui-button-wrapper' and contains(text(),'Discard')]"))).click()
+        WebDriverWait(self.driver, 20)
 
 class datetime():
     def __init__(self, driver):
         self.driver = driver
     def select_datetime(self):
-        self.driver.find_element_by_xpath("//span[contains(text(),'Date and time')]").click()
+        wait = WebDriverWait(self.driver, 30)
+        wait.until(ec.presence_of_element_located((By.XPATH, "//span[contains(text(),'Date and time')]"))).click()
     def clickontimezone_tochange(self):
-        self.driver.find_element_by_xpath("//label[contains(text(),'Default time zone')]//following-sibling::div[@class='form-control ng-star-inserted'][1]").click()
+        wait = WebDriverWait(self.driver, 20)
+        wait.until(ec.presence_of_element_located((By.XPATH, "//label[contains(text(),'Default time zone')]//following-sibling::div[@class='form-control ng-star-inserted'][1]"))).click()
     def search_timezone(self, timezone):
-        self.driver.find_element_by_xpath("//input[@class='oui-select-search-input oui-input-element oui-input oui-primary cdk-text-field-autofill-monitored']").send_keys(timezone)
+        wait = WebDriverWait(self.driver, 20)
+        wait.until(ec.presence_of_element_located((By.XPATH, "//input[@class='oui-input-element oui-select-search-input oui-input oui-primary cdk-text-field-autofill-monitored']"))).send_keys(timezone)
     def select_searchedtimezone(self):
-        self.driver.find_element_by_xpath("//span[@class='oui-option-text' and contains(text(),'India')]").click()
+        wait = WebDriverWait(self.driver, 20)
+        wait.until(ec.visibility_of_element_located((By.XPATH, "//span[@class='oui-option-text' and contains(text(),'India')]"))).click()
     def click_save(self):
-        self.driver.find_element_by_xpath("//button[@title='Save changes']").click()
+        wait = WebDriverWait(self.driver, 20)
+        wait.until(ec.presence_of_element_located((By.XPATH, "//button[@title='Save changes']"))).click()
 
 
 class compliance():
@@ -73,7 +95,8 @@ class compliance():
         flag = self.driver.find_element_by_xpath("//span[@class='sl-sidenav-link-text' and contains(text(),'Compliance')]")
         self.driver.execute_script("arguments[0].scrollIntoView();", flag)
     def select_compliance(self):
-        self.driver.find_element_by_xpath("//span[@class='sl-sidenav-link-text' and contains(text(),'Compliance')]").click()
+        wait = WebDriverWait(self.driver, 20)
+        wait.until(ec.presence_of_element_located((By.XPATH, "//span[@class='sl-sidenav-link-text' and contains(text(),'Compliance')]"))).click()
 
 
 class Emailnotification():
