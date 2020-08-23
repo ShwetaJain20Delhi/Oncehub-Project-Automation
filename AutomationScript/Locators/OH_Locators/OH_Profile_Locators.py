@@ -66,7 +66,6 @@ class select_authentication():
         self.driver.execute_script("arguments[0].scrollIntoView();", flag)
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.visibility_of_element_located((By.XPATH, "//span[@class='oui-button-wrapper' and contains(text(),'Discard')]"))).click()
-        WebDriverWait(self.driver, 20)
 
 class datetime():
     def __init__(self, driver):
