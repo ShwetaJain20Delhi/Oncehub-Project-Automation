@@ -22,26 +22,17 @@ class BillingPage():
     def Billing(self):
         bill = Billing(self.driver)
         bill.scroll_till_billing_visible()
-        time.sleep(4)
         bill.click_on_Billing()
-        time.sleep(4)
 
     def Billing_product(self):
         bill_notification = Billing_Product(self.driver)
         bill_notification.click_on_Billing_product()
-        time.sleep(4)
-        bill_notification.click_on_whatisscheduleonce()
-        time.sleep(4)
-        bill_notification.close_so_popup()
-        time.sleep(4)
-        bill_notification.click_on_whatisinviteonce()
-        time.sleep(4)
-        bill_notification.close_io_popup()
-        time.sleep(4)
+        # bill_notification.click_on_whatisscheduleonce()
+        # bill_notification.close_so_popup()
+        # bill_notification.click_on_whatisinviteonce()
+        # bill_notification.close_io_popup()
         bill_notification.view_sms_log()
-        time.sleep(8)
         self.driver.back()
-        time.sleep(3)
 
 
 if __name__ == "__main__":

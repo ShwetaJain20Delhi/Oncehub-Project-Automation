@@ -1,3 +1,5 @@
+from selenium.webdriver.support.wait import WebDriverWait
+
 from AutomationScript.OnceHub.Add_Remove_users.OH_Adding_User import Add_Users
 from AutomationScript.OnceHub.Add_Remove_users.OH_Removing_User import Remove_Users
 from AutomationScript.OnceHub.Add_Remove_users.OH_Resend_Invitation_link import Resend_invitation
@@ -18,7 +20,8 @@ from AutomationScript.OnceHub.OH_Profile.OH_personal_details import OH_personal_
 from AutomationScript.OnceHub.OH_Profile.Date_and_Time_in_OH import datetime, DateAndtime
 from AutomationScript.OnceHub.OH_Profile.Password_Change import passwordpage
 from AutomationScript.OnceHub.OH_Profile.SMS_notification import smsnotification
-from AutomationScript.OnceHub.OH_Schedule.Share_link_without_personalised_and_Publish import share_public_link
+from AutomationScript.OnceHub.OH_Schedule.Share_Personalised_link import share_public_link
+from AutomationScript.OnceHub.OH_Schedule.Share_link_without_personalised_and_Publish import share_public_link_without_personalised
 from AutomationScript.OnceHub.OH_security.Security_Account_Lockout_Policies import security_Account_lockout_policies
 from AutomationScript.OnceHub.OH_security.Security_Password_Policy import security_password_policies
 from AutomationScript.OnceHub.OH_security.Security_SSO import security_sso_policies
@@ -41,6 +44,7 @@ class complete_automation():
 
     ########## edit personal setting ###########
         personal_setting.edit_personal_details()
+        WebDriverWait(self.driver, 20)
 
     ########## Calendar Connection #############
         calendar = calendar_connection_setting(driver)
@@ -129,31 +133,32 @@ class complete_automation():
     ########## OHsettings ############
         password = oh_settings(driver)
         password.Oh_settings_module()
-
-    ########## Add_Users ############
-        adding_user = Add_Users(driver)
-        adding_user.Users()
-        adding_user.add_user()
-
-    ########## Resend_invitation ############
-        resend_invite = Resend_invitation(driver)
-        resend_invite.Users()
-        resend_invite.Resend_invitation_link()
-
-    ########## Remove_Users ############
-        removing_user = Remove_Users(driver)
-        removing_user.Users()
-        removing_user.Remove_user()
-
-    ########## Share public link without personalised link ############
-        public_link = share_public_link(driver)
-        public_link.Schedule_without_personalised_link()
-
-    ########## Share public link personalised link ############
-        public_link.Schedule_with_personalised_link()
-
-    ########## Publish webiste link ############
-        public_link.Publish_your_website()
+    #
+    # ########## Add_Users ############
+    #     adding_user = Add_Users(driver)
+    #     adding_user.Users()
+    #     adding_user.add_user()
+    #
+    # ########## Resend_invitation ############
+    #     resend_invite = Resend_invitation(driver)
+    #     resend_invite.Users()
+    #     resend_invite.Resend_invitation_link()
+    #
+    # ########## Remove_Users ############
+    #     removing_user = Remove_Users(driver)
+    #     removing_user.Users()
+    #     removing_user.Remove_user()
+    #
+    # ########## Share public link without personalised link ############
+    #     public_link = share_public_link(driver)
+    #     public_link.Schedule_with_personalised_link()
+    #
+    # ########## Share public link personalised link ############
+    #     public_without = share_public_link_without_personalised(driver)
+    #     public_without.Schedule_without_personalised_link()
+    #
+    # ########## Publish webiste link ############
+    #     public_without.Publish_your_website()
 
 
 if __name__ == "__main__":

@@ -22,22 +22,15 @@ class BillingTrans():
     def Billing(self):
         bill = Billing(self.driver)
         bill.scroll_till_billing_visible()
-        time.sleep(4)
         bill.click_on_Billing()
-        time.sleep(4)
 
     def Billing_Transaction_page(self):
         bill_trans = Billing_Transaction(self.driver)
         bill_trans.click_on_Billing_transaction()
-        time.sleep(4)
         bill_trans.click_on_3dot_of_transaction()
-        time.sleep(4)
         bill_trans.select_Buyer_details_on_invoice_option()
-        time.sleep(4)
         bill_trans.click_on_save_button()
-        time.sleep(4)
         bill_trans.close_popup()
-        time.sleep(3)
 
 
 if __name__ == "__main__":

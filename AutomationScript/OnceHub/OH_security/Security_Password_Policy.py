@@ -22,28 +22,18 @@ class security_password_policies():
     def security(self):
         secure = Security(self.driver)
         secure.scroll_till_security_visible()
-        time.sleep(4)
         secure.click_on_Security()
-        time.sleep(4)
 
     def security_password(self):
         password = Security_Password_Policies(self.driver)
         password.click_on_security_password_policies()
-        time.sleep(3)
         password.select_passwordLength_dropdown()
-        time.sleep(3)
         password.select_any_value_from_dropdown()
-        time.sleep(3)
         password.select_capitalletters_from_complexity()
-        time.sleep(3)
         password.select_specialcharacters_from_complexity()
-        time.sleep(3)
         password.select_2ndoption_from_password_expiration()
-        time.sleep(3)
         password.select_2ndoption_from_password_history()
-        time.sleep(3)
         password.click_discard_button()
-        time.sleep(5)
 
 
 if __name__ == "__main__":

@@ -22,22 +22,14 @@ class security_session_policies():
     def security(self):
         secure = Security(self.driver)
         secure.scroll_till_security_visible()
-        time.sleep(4)
         secure.click_on_Security()
-        time.sleep(4)
-
     def security_session(self):
         session = Security_Session_Policies(self.driver)
         session.scroll_till_security_session_visible()
-        time.sleep(3)
         session.click_on_security_session_policies()
-        time.sleep(3)
         session.select_2ndoption_from_password_policies()
-        time.sleep(3)
         session.select_1stoption_from_password_policies()
-        time.sleep(3)
         session.select_save_button()
-        time.sleep(5)
 
 
 if __name__ == "__main__":

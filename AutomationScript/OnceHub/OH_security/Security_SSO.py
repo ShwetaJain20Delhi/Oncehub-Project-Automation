@@ -22,14 +22,11 @@ class security_sso_policies():
     def security(self):
         secure = Security(self.driver)
         secure.scroll_till_security_visible()
-        time.sleep(4)
         secure.click_on_Security()
-        time.sleep(4)
 
     def security_SSO(self):
         session = Security_SSO_Policies(self.driver)
         session.click_on_security_sso_policies()
-        time.sleep(5)
 
 
 if __name__ == "__main__":

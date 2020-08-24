@@ -23,14 +23,11 @@ class BillingNotify():
     def Billing(self):
         bill = Billing(self.driver)
         bill.scroll_till_billing_visible()
-        time.sleep(4)
         bill.click_on_Billing()
-        time.sleep(4)
 
     def Billing_notification(self):
         bill_notification = Billing_notification(self.driver)
         bill_notification.click_on_Billing_Notification()
-        time.sleep(4)
 
 
 if __name__ == "__main__":

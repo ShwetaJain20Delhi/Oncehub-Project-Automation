@@ -20,8 +20,8 @@ class OH_personal_setting():
     def navigate_to_url(self):
         self.driver.maximize_window()
         self.driver.get("https://app2.onceplatform.com/")
-        self.driver.implicitly_wait(40)
-        WebDriverWait(self.driver, 30)
+        self.driver.implicitly_wait(50)
+        WebDriverWait(self.driver, 50)
 
     #################################  Login to OH  #################################
     def login_to_OH(self):

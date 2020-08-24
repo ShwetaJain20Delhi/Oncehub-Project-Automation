@@ -22,16 +22,12 @@ class PrivacyPage():
     def Privacy(self):
         bill = Privacy(self.driver)
         bill.scroll_till_privacy_visible()
-        time.sleep(4)
         bill.click_on_Privacy()
-        time.sleep(4)
 
     def Privacy_Shield(self):
         privacy = Privacy_shield(self.driver)
         privacy.click_on_privacy_shield()
-        time.sleep(3)
         privacy.Scroll_till_end()
-        time.sleep(4)
 
 
 if __name__ == "__main__":

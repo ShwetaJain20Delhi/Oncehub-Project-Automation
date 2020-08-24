@@ -22,20 +22,14 @@ class security_Account_lockout_policies():
     def security(self):
         secure = Security(self.driver)
         secure.scroll_till_security_visible()
-        time.sleep(4)
         secure.click_on_Security()
-        time.sleep(4)
 
     def security_account_lockout(self):
         lockout = Security_lockout_policies(self.driver)
         lockout.click_on_security_Lockout_policies()
-        time.sleep(3)
         lockout.click_on_account_lockout_enabled()
-        time.sleep(3)
         lockout.click_on_account_lockout_disabled()
-        time.sleep(3)
         lockout.click_save_button()
-        time.sleep(5)
 
 
 if __name__ == "__main__":

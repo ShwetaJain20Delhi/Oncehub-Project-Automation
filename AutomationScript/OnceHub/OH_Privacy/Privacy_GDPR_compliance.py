@@ -22,18 +22,13 @@ class Privacy_compliance():
     def Privacy(self):
         bill = Privacy(self.driver)
         bill.scroll_till_privacy_visible()
-        time.sleep(4)
         bill.click_on_Privacy()
-        time.sleep(4)
 
     def Privacy_Compliance(self):
         comp = Privacy_GDPR_Compliance(self.driver)
         comp.scroll_till_privacy_compliance_visible()
-        time.sleep(4)
         comp.click_privacy_compliance()
-        time.sleep(4)
         comp.scroll_till_end()
-        time.sleep(3)
 
 
 if __name__ == "__main__":

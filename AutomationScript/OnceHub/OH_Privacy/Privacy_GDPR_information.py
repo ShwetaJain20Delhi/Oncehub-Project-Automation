@@ -22,22 +22,15 @@ class Privacy_info():
     def Privacy(self):
         bill = Privacy(self.driver)
         bill.scroll_till_privacy_visible()
-        time.sleep(4)
         bill.click_on_Privacy()
-        time.sleep(4)
 
     def GDPR_Information(self):
         privacy_gdpr = Privacy_GDPR_Information(self.driver)
         privacy_gdpr.click_Privacy_GDPR()
-        time.sleep(3)
         privacy_gdpr.enter_Fullname("Test 1")
-        time.sleep(3)
         privacy_gdpr.enter_emailid("testinginviteoncetesting@gmail.com")
-        time.sleep(3)
         privacy_gdpr.enter_address("Delhi")
-        time.sleep(3)
         privacy_gdpr.click_save()
-        time.sleep(4)
 
 
 if __name__ == "__main__":

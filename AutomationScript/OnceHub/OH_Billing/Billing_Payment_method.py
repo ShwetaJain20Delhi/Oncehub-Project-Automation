@@ -22,14 +22,11 @@ class BillingPay():
     def Billing(self):
         bill = Billing(self.driver)
         bill.scroll_till_billing_visible()
-        time.sleep(4)
         bill.click_on_Billing()
-        time.sleep(4)
 
     def Billing_payment_method(self):
         bill_notification = Billing_PaymentMethods(self.driver)
         bill_notification.click_on_Billing_payment_method()
-        time.sleep(4)
 
 
 if __name__ == "__main__":

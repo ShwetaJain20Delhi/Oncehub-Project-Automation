@@ -10,7 +10,7 @@ class Applicationlogin():
         self.password = "password"
         self.login_button_id = "signIn"
     def enter_username(self, username):
-        wait = WebDriverWait(self.driver, 10)
+        wait = WebDriverWait(self.driver, 30)
         wait.until(ec.presence_of_element_located((By.NAME, self.username))).send_keys(username)
     def enter_password(self, password):
         wait = WebDriverWait(self.driver, 10)
@@ -25,10 +25,10 @@ class Personalsetting():
         self.driver = driver
         self.username_textbox_lastname = "lastName"
     def click_profile_icon(self):
-        wait = WebDriverWait(self.driver, 20)
-        wait.until(ec.presence_of_element_located((By.XPATH, "//*[@id='rAccountIcon']"))).click()
+        wait = WebDriverWait(self.driver, 30)
+        wait.until(ec.presence_of_element_located((By.XPATH, "//div[@title='Profile settings' and @class='userMyAccount profileBtn']//a[@id='rAccountIcon']"))).click()
     def select_myprofile(self):
-        wait = WebDriverWait(self.driver, 20)
+        wait = WebDriverWait(self.driver, 30)
         wait.until(ec.presence_of_element_located((By.XPATH, "//span[contains(text(),'My profile')]"))).click()
     def click_3dot(self):
         wait = WebDriverWait(self.driver, 20)
@@ -41,7 +41,7 @@ class Personalsetting():
         wait.until(ec.presence_of_element_located((By.NAME, self.username_textbox_lastname))).clear()
         wait.until(ec.presence_of_element_located((By.NAME, self.username_textbox_lastname))).send_keys(lastname)
     def click_save(self):
-        wait = WebDriverWait(self.driver, 20)
+        wait = WebDriverWait(self.driver, 30)
         wait.until(ec.presence_of_element_located((By.XPATH, "//button[@title='Save']"))).click()
 
 
