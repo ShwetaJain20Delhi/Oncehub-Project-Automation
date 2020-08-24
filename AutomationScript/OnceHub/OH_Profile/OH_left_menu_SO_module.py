@@ -22,13 +22,9 @@ class OH_scheduleonce():
     def OH_SO_module(self):
         so_page = Oh_so_module(self.driver)
         so_page.select_so()
-        time.sleep(3)
         so_page.select_payment_integration()
-        time.sleep(2)
         so_page.select_zapier_integration()
-        time.sleep(2)
         so_page.discard_changes()
-        time.sleep(5)
 
 
 if __name__ == "__main__":

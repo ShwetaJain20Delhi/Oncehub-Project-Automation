@@ -21,50 +21,35 @@ class calendar_connection_setting():
         personal_setting = OH_personal_setting(driver)
         personal_setting.navigate_to_url()
         personal_setting.login_to_OH()
-        time.sleep(5)
 
     def Connect_calendar_with_notification_center(self):
         connect = Notification_connect(self.driver)
         # connect.click_on_notication_icon()
-        # time.sleep(5)
         connect.click_connect_button_for_calendar_connection()
-        time.sleep(7)
 
     def Oh_O365_via_ews_calendar_connect(self):
         calendar_O365 = o365_via_ews_Calendar(self.driver)
         calendar_O365.click_on_connect_button_for_O365_EWS()
-        time.sleep(5)
         calendar_O365.enter_email("shalini@oncehq.com")
-        time.sleep(3)
         calendar_O365.enter_password("msvrdzxhkdhvbrhj")
-        time.sleep(3)
         calendar_O365.click_on_connect_button()
-        time.sleep(12)
 
     def Oh_reminder_setting(self):
         reminder = reminder_setting(self.driver)
         reminder.click_reminder_dropdown()
-        time.sleep(3)
         reminder.select_5minute_reminder()
-        time.sleep(5)
 
     def so_sync_setting(self):
         sync = sync_2way_setting(self.driver)
         sync.scroll_till_so_advanced_setting_visible()
-        time.sleep(5)
         sync.change_togglevalue_for_delete_event()
-        time.sleep(3)
         sync.change_togglevalue_for_change_event()
-        time.sleep(3)
 
     def so_setup(self):
         setup_so = so_setup_calendarpage(self.driver)
         setup_so.scroll_till_so_continueSetup_visible()
-        time.sleep(5)
         setup_so.select_continue_setup_from_calendarpage()
-        time.sleep(10)
         self.driver.back()
-        time.sleep(10)
 
 
 if __name__ == "__main__":

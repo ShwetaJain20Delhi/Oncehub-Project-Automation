@@ -23,13 +23,9 @@ class oh_settings():
         setting = Settings_OH(self.driver)
         setting.Scroll_till_settingsoption_visible()
         setting.select_settings_oh()
-        time.sleep(3)
         setting.click_deleteaccount_option()
-        time.sleep(3)
         setting.select_checkbox_on_popup()
-        time.sleep(3)
         setting.select_keepmyaccount_option()
-        time.sleep(5)
 
 
 if __name__ == "__main__":

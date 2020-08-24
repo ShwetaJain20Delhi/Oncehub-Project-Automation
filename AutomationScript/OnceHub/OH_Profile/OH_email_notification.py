@@ -22,11 +22,8 @@ class emailnotification():
     def Emailnotification(self):
         notification = Emailnotification(self.driver)
         notification.select_email_notification()
-        time.sleep(5)
         notification.edit_sentfromname_field("Test Admin")
-        time.sleep(3)
         notification.click_save()
-        time.sleep(4)
 
 
 if __name__ == "__main__":

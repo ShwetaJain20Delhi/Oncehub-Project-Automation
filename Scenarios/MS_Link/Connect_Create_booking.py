@@ -21,49 +21,33 @@ class ms_team():
     def calendar_disconnect(self):
         personal = Personalsetting(driver)
         personal.click_profile_icon()
-        time.sleep(3)
         exchangecalendar = ExchangeCalendar(self.driver)
         exchangecalendar.select_calendarconnection_from_menu()
-        time.sleep(8)
         connection = Connection_check(self.driver)
         connection.disconnect_connected_calendar()
-        time.sleep(5)
 
     def MS_connected_state_on_video_conferencing(self):
         video = profile_video_conferencing(self.driver)
         video.select_video_conferencing()
-        time.sleep(8)
         connection = Connection_check(self.driver)
         connection.check_MS_team_connected_state_visible_on_video_conferencing()
-        time.sleep(5)
 
     def SO_setup(self):
         setup = redirect_to_SO_setup_page(self.driver)
         setup.click_on_setup_menu()
-        time.sleep(4)
         setup.select_SO_setup_option()
-        time.sleep(15)
 
     def Create_BP_and_create_meeting_with_MS_link(self):
         booking = create_booking_page(self.driver)
         booking.click_plus_icon_to_create_booking_page()
-        time.sleep(4)
         booking.enter_public_name("Shweta_oncehub")
-        time.sleep(4)
         booking.click_internal_label()
-        time.sleep(4)
         booking.click_save_and_edit_button()
-        time.sleep(10)
         booking.select_Conferecning_location_from_left_menu()
-        time.sleep(7)
         booking.check_or_select_virtual_location_option_from_meeting_channel()
-        time.sleep(4)
         booking.select_or_check_MS_team_video_conferecing_is_enabled_or_not()
-        time.sleep(4)
         booking.click_3dot_menu_of_booking_page()
-        time.sleep(4)
         booking.select_public_link()
-        time.sleep(7)
 
 
 if __name__ == "__main__":

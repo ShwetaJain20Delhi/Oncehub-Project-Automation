@@ -22,15 +22,10 @@ class passwordpage():
     def password_module(self):
         passpage = password_policies(self.driver)
         passpage.select_password_from_OH()
-        time.sleep(3)
         passpage.enter_current_password("testing@1234")
-        time.sleep(2)
         passpage.enter_new_password("testing@1234")
-        time.sleep(2)
         passpage.Reenter_new_password("testing@1234")
-        time.sleep(2)
         passpage.Discard_changes()
-        time.sleep(5)
 
 
 if __name__ == "__main__":

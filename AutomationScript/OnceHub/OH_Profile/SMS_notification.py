@@ -22,11 +22,8 @@ class smsnotification():
     def sms_notification_module(self):
         sms = sms_notification(self.driver)
         sms.select_smsnotification_oh()
-        time.sleep(5)
         sms.user_notification_toggle()
-        time.sleep(4)
         sms.discard_changes()
-        time.sleep(5)
 
 
 if __name__ == "__main__":
