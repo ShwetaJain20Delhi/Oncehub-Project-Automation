@@ -19,31 +19,20 @@ class Create_ChatOnce_bot():
         self.driver.maximize_window()
         self.driver.get("file:///C:/Backup/desktop/Bot/Automation%20Bot/Test.HTML")
         self.driver.implicitly_wait(30)
-        time.sleep(20)
 
     def launch(self):
         bot = website_Launch_Chatbot(self.driver)
         bot.click_chatbot_icon()
-        time.sleep(10)
         preview = Preview_Chat(self.driver)
         preview.enter_details("It is Good, thanks!!")
-        time.sleep(5)
         preview.enter_email_address("Testinginviteoncetesting@gmail.com")
-        time.sleep(17)
         preview.Select_timeZone()
-        time.sleep(5)
         preview.click_on_dropdown()
-        time.sleep(5)
         preview.search_India()
-        time.sleep(5)
         preview.click_continue()
-        time.sleep(18)
         preview.select_time_slot()
-        time.sleep(5)
         preview.click_confirm()
-        time.sleep(40)
         preview.close_preview_bot()
-        time.sleep(7)
 
 
 if __name__ == "__main__":

@@ -6,6 +6,7 @@ from AutomationScript.ChatOnce.ChatOnce_bot.Bot_Edit import bot_3dot_edit
 from AutomationScript.ChatOnce.ChatOnce_bot.Bot_Preview_Publish import bot_Publish_Preview
 from AutomationScript.ChatOnce.ChatOnce_bot.Bot_Rename import bot_3dot_rename
 from AutomationScript.ChatOnce.ChatOnce_bot.Create_chatonce_bot import Create_ChatOnce_bot
+from AutomationScript.OnceHub.OH_Profile.OH_personal_details import OH_personal_setting
 from AutomationScript.Webdrivers.Chrome_driver import get_chrome_driver
 import time
 
@@ -19,9 +20,10 @@ class signup_CO_product_selection():
 
 if __name__ == "__main__":
     driver = get_chrome_driver().launch_chrome()
+    personal_setting = OH_personal_setting(driver)
+    personal_setting.navigate_to_url()
+    personal_setting.login_to_OH()
     chatbot_website = Create_ChatOnce_bot(driver)
-    chatbot_website.navigate_to_url()
-    chatbot_website.login_to_OH()
     chatbot_website.select_co_from_setup()
     chatbot_website.create_bot()
     publish_preview = bot_Publish_Preview(driver)
