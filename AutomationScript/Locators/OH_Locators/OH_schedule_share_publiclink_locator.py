@@ -1,3 +1,5 @@
+import time
+
 import pyperclip as pc
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -10,15 +12,17 @@ class share_without_personalised_link():
     def click_schedule_option_from_top_menu(self):
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.visibility_of_element_located((By.XPATH, "//span[contains(text(),' Schedule ')]"))).click()
+        time.sleep(2)
     def from_so_click_share_booking_link(self):
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.visibility_of_element_located((By.XPATH, "//a[@class='share-a-booking-page-link']"))).click()
+        time.sleep(2)
     def select_dropdown_option(self):
         wait = WebDriverWait(self.driver, 30)
-        wait.until(ec.visibility_of_element_located((By.XPATH, "//div[@class='oui-select-trigger']"))).click()
+        wait.until(ec.visibility_of_element_located((By.XPATH, "//label[contains(text(),'Select a Booking page')]//parent::div[1]//following::oui-form-field[1]//following::span[1]//span[@id='selected-values']"))).click()
     def select_booking_page(self):
         wait = WebDriverWait(self.driver, 30)
-        wait.until(ec.visibility_of_element_located((By.XPATH, "//span[contains(text(),'test151')]//parent::oui-option[@title='test151']"))).click()
+        wait.until(ec.visibility_of_element_located((By.XPATH, "//span[contains(text(),'Shweta_oncehub')]//parent::oui-option[@title='Shweta_oncehub']"))).click()
     def copy_public_link(self):
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.visibility_of_element_located((By.ID, "bookingPageLink"))).click()
@@ -35,12 +39,14 @@ class new_tab():
         self.driver.switch_to_window(self.driver.window_handles[1])
         text = pc.paste()
         self.driver.get(text)
+        time.sleep(8)
     def select_15minute_event_type(self):
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.presence_of_element_located((By.XPATH, "//div[@title='Select  15-minute meeting']"))).click()
     def change_time_zone(self):
         wait = WebDriverWait(self.driver, 40)
         wait.until(ec.visibility_of_element_located((By.XPATH, "//a[@title='Edit your time zone']"))).click()
+        time.sleep(5)
     def click_on_dropdown(self):
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.visibility_of_element_located((By.XPATH, "//input[@id='input_country']"))).click()
@@ -53,15 +59,19 @@ class new_tab():
     def click_continue(self):
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.visibility_of_element_located((By.XPATH, "//button[@type='submit']"))).click()
+        time.sleep(5)
     def select_time_slot(self):
-        flag = self.driver.find_element_by_xpath("//button[contains(text(),'4:00 PM')]")
+        flag = self.driver.find_element_by_xpath("//button[contains(text(),'3:00 PM')]")
         self.driver.execute_script("arguments[0].scrollIntoView();", flag)
         wait = WebDriverWait(self.driver, 30)
-        wait.until(ec.visibility_of_element_located((By.XPATH, "//button[contains(text(),'4:00 PM')]"))).click()
+        wait.until(ec.visibility_of_element_located((By.XPATH, "//button[contains(text(),'3:00 PM')]"))).click()
     def clickcontinue(self):
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.visibility_of_element_located((By.XPATH, "// button[ @ title = 'Proceed to next step']"))).click()
-
+    def click_done(self):
+        wait = WebDriverWait(self.driver, 30)
+        wait.until(ec.visibility_of_element_located((By.XPATH, "//button[@title='Confirm your booking request']"))).click()
+        time.sleep(3)
 
 class Booking_form():
     def __init__(self, driver):
@@ -79,6 +89,7 @@ class Booking_form():
         self.driver.execute_script("arguments[0].scrollIntoView();", flag)
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.visibility_of_element_located((By.XPATH, "// button[ @ title = 'Confirm your booking request']"))).click()
+        time.sleep(3)
         self.driver.close()
         self.driver.switch_to_window(self.driver.window_handles[0])
     # def copy_bookingID(self):

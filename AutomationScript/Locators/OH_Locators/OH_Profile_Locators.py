@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
@@ -16,8 +18,9 @@ class Applicationlogin():
         wait = WebDriverWait(self.driver, 10)
         wait.until(ec.presence_of_element_located((By.NAME, self.password))).send_keys(password)
     def click_login(self):
-        wait = WebDriverWait(self.driver, 10)
+        wait = WebDriverWait(self.driver, 30)
         wait.until(ec.presence_of_element_located((By.ID, self.login_button_id))).click()
+        WebDriverWait(self.driver, 15)
 
 
 class Personalsetting():
@@ -25,7 +28,9 @@ class Personalsetting():
         self.driver = driver
         self.username_textbox_lastname = "lastName"
     def click_profile_icon(self):
-        wait = WebDriverWait(self.driver, 30)
+        wait = WebDriverWait(self.driver, 40)
+        # button = self.driver.find_element_by_xpath("//div[@title='Profile settings' and @class='userMyAccount profileBtn']//a[@id='rAccountIcon']")
+        # self.driver.execute_script("arguments[0].click();", button)
         wait.until(ec.presence_of_element_located((By.XPATH, "//div[@title='Profile settings' and @class='userMyAccount profileBtn']//a[@id='rAccountIcon']"))).click()
     def select_myprofile(self):
         wait = WebDriverWait(self.driver, 30)
@@ -43,6 +48,7 @@ class Personalsetting():
     def click_save(self):
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.presence_of_element_located((By.XPATH, "//button[@title='Save']"))).click()
+        WebDriverWait(self.driver, 30)
 
 
 class select_authentication():
@@ -51,7 +57,7 @@ class select_authentication():
         self.password_textbox = "current-password"
     def click_authentication(self):
         wait = WebDriverWait(self.driver, 20)
-        wait.until(ec.presence_of_element_located((By.XPATH, "//a[@href='https://app2.onceplatform.com/users/user-profile/USR-KE7N20HJ59/general/authentication']"))).click()
+        wait.until(ec.presence_of_element_located((By.XPATH, "//span[contains(text(),'Authentication')]"))).click()
     def enable_2factor_toggle(self):
         wait = WebDriverWait(self.driver, 20)
         wait.until(ec.presence_of_element_located((By.XPATH, "//span[@class='oui-slider round']"))).click()
@@ -61,11 +67,13 @@ class select_authentication():
     def click_submit_button(self):
         wait = WebDriverWait(self.driver, 20)
         wait.until(ec.presence_of_element_located((By.XPATH, "//button[@class='oui-button oui-primary']"))).click()
+        time.sleep(2)
     def discard_changes(self):
         flag = self.driver.find_element_by_xpath("//span[@class='oui-button-wrapper' and contains(text(),'Discard')]")
         self.driver.execute_script("arguments[0].scrollIntoView();", flag)
         wait = WebDriverWait(self.driver, 20)
         wait.until(ec.presence_of_element_located((By.XPATH, "//span[@class='oui-button-wrapper' and contains(text(),'Discard')]"))).click()
+
 
 class datetime():
     def __init__(self, driver):
@@ -96,6 +104,7 @@ class compliance():
     def select_compliance(self):
         wait = WebDriverWait(self.driver, 20)
         wait.until(ec.presence_of_element_located((By.XPATH, "//span[@class='sl-sidenav-link-text' and contains(text(),'Compliance')]"))).click()
+        time.sleep(3)
 
 
 class Emailnotification():
@@ -105,16 +114,18 @@ class Emailnotification():
     def select_email_notification(self):
         wait = WebDriverWait(self.driver, 20)
         wait.until(ec.presence_of_element_located((By.XPATH, "//span[@class='sl-sidenav-link-text' and contains(text(),'Email notifications')]"))).click()
+        time.sleep(3)
     def edit_sentfromname_field(self, name):
-        flag = self.driver.find_element_by_id("oui-input-0")
+        flag = self.driver.find_element_by_xpath("//input[@formcontrolname='customerSendingEmailAddressLabel']")
         self.driver.execute_script("arguments[0].scrollIntoView();", flag)
-        wait = WebDriverWait(self.driver, 20)
-        wait.until(ec.presence_of_element_located((By.ID, self.edit_name))).clear()
-        wait = WebDriverWait(self.driver, 20)
-        wait.until(ec.presence_of_element_located((By.ID, self.edit_name))).send_keys(name)
+        wait = WebDriverWait(self.driver, 30)
+        wait.until(ec.presence_of_element_located((By.XPATH, "//input[@formcontrolname='customerSendingEmailAddressLabel']"))).clear()
+        wait = WebDriverWait(self.driver, 30)
+        wait.until(ec.presence_of_element_located((By.XPATH, "//input[@formcontrolname='customerSendingEmailAddressLabel']"))).send_keys(name)
     def click_save(self):
-        wait = WebDriverWait(self.driver, 20)
+        wait = WebDriverWait(self.driver, 30)
         wait.until(ec.presence_of_element_located((By.XPATH, "//button[@title='Save changes']"))).click()
+        time.sleep(3)
 
 
 class Oh_so_module():
@@ -171,6 +182,7 @@ class sms_notification():
     def discard_changes(self):
         wait = WebDriverWait(self.driver, 20)
         wait.until(ec.presence_of_element_located((By.XPATH, "//span[contains(text(),'Discard')]"))).click()
+        time.sleep(3)
 
 
 class Settings_OH():

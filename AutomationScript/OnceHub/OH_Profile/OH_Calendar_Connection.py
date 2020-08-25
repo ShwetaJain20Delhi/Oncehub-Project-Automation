@@ -4,6 +4,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
+from AutomationScript.Locators.Scenario_Locator.MS_team_locator.MS_team_link_locator import Connection_check
 from AutomationScript.OnceHub.OH_Profile.OH_personal_details import OH_personal_setting
 from AutomationScript.Locators.OH_Locators.Calendar_Locator import ExchangeCalendar
 from AutomationScript.Locators.OH_Locators.Calendar_Locator import reminder_setting
@@ -27,10 +28,12 @@ class calendar_connection_setting():
     def Calendarconnection_from_profilemenu(self):
         personal = Personalsetting(self.driver)
         personal.click_profile_icon()
-        WebDriverWait(self.driver, 10)
+        time.sleep(4)
     def Oh_Exchange_calendar_connect(self):
         exchangecalendar = ExchangeCalendar(self.driver)
         exchangecalendar.select_calendarconnection_from_menu()
+        connection = Connection_check(self.driver)
+        connection.disconnect_connected_calendar()
         exchangecalendar.click_exchange_connect_button()
         exchangecalendar.enter_username("gilad@staticso.com")
         exchangecalendar.enter_password("schEdu1e")

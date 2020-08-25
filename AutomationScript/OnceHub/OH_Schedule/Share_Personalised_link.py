@@ -32,7 +32,7 @@ class share_public_link():
         ############# Open new tab and paste the booking url #####################
         opentab = new_tab(self.driver)
         opentab.open_new_window_and_paste_copied_url()
-        opentab.select_15minute_event_type()
+        # opentab.select_15minute_event_type()
         opentab.change_time_zone()
         opentab.click_on_dropdown()
         opentab.search_India("India")
@@ -40,8 +40,8 @@ class share_public_link():
         opentab.click_continue()
         opentab.select_time_slot()
         opentab.clickcontinue()
-        conti = share_with_perosnalised_link(self.driver)
-        conti.close_meeting_tab_switch_to_application_tab()
+        form = Booking_form(self.driver)
+        form.click_done()
 
 
 if __name__ == "__main__":

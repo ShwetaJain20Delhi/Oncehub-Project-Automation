@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
@@ -12,6 +14,7 @@ class ExchangeCalendar():
     def select_calendarconnection_from_menu(self):
         wait = WebDriverWait(self.driver, 20)
         wait.until(ec.presence_of_element_located((By.XPATH, "//span[contains(text(),'Calendar connection')]"))).click()
+        time.sleep(3)
     def click_exchange_connect_button(self):
         wait = WebDriverWait(self.driver, 20)
         wait.until(ec.presence_of_element_located((By.ID, "ExchangeCalendarConnectBtn"))).click()

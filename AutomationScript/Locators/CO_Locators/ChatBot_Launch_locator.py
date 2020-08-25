@@ -1,3 +1,9 @@
+import time
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.common.by import By
+
+
 class website_Launch_Chatbot():
     def __init__(self, driver):
         self.driver = driver
@@ -7,5 +13,6 @@ class website_Launch_Chatbot():
     def click_chatbot_icon(self):
         self.driver.switch_to_frame("co-widget-iframe")
         print("run")
-        self.driver.find_element_by_xpath("//div[@data-testid='toggle-btn']").click()
+        wait = WebDriverWait(self.driver, 20)
+        wait.until(ec.presence_of_element_located((By.XPATH, "//div[@data-testid='toggle-btn']"))).click()
         print("hello")

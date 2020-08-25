@@ -28,7 +28,7 @@ class share_public_link_without_personalised():
     ############# Open new tab and paste the booking url #####################
         opentab = new_tab(self.driver)
         opentab.open_new_window_and_paste_copied_url()
-        opentab.select_15minute_event_type()
+        # opentab.select_15minute_event_type()
         opentab.change_time_zone()
         opentab.click_on_dropdown()
         opentab.search_India("India")

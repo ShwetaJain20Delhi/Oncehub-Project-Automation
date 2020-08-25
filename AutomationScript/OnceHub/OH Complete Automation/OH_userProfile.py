@@ -1,5 +1,6 @@
 from selenium.webdriver.support.wait import WebDriverWait
 
+from AutomationScript.Locators.Scenario_Locator.MS_team_locator.MS_team_link_locator import Connection_check
 from AutomationScript.OnceHub.Add_Remove_users.OH_Adding_User import Add_Users
 from AutomationScript.OnceHub.Add_Remove_users.OH_Removing_User import Remove_Users
 from AutomationScript.OnceHub.Add_Remove_users.OH_Resend_Invitation_link import Resend_invitation
@@ -40,11 +41,10 @@ class complete_automation():
     ########### Login to server #################
         personal_setting.navigate_to_url()
         personal_setting.login_to_OH()
-        personal_setting.select_my_profile()
+        # personal_setting.select_my_profile()
 
     ########## edit personal setting ###########
         personal_setting.edit_personal_details()
-        WebDriverWait(self.driver, 20)
 
     ########## Calendar Connection #############
         calendar = calendar_connection_setting(driver)
@@ -95,10 +95,10 @@ class complete_automation():
         billProd = BillingTrans(driver)
         billProd.Billing_Transaction_page()
 
-    # ########## security_sso_policies ############
-    #     sso_policies = security_sso_policies(driver)
-    #     sso_policies.security()
-    #     sso_policies.security_SSO()
+    ########## security_sso_policies ############
+        sso_policies = security_sso_policies(driver)
+        sso_policies.security()
+        sso_policies.security_SSO()
 
     ########## security_password_policies ############
         pass_policies = security_password_policies(driver)
@@ -148,17 +148,17 @@ class complete_automation():
     #     removing_user = Remove_Users(driver)
     #     removing_user.Users()
     #     removing_user.Remove_user()
-    #
-    # ########## Share public link without personalised link ############
-    #     public_link = share_public_link(driver)
-    #     public_link.Schedule_with_personalised_link()
-    #
-    # ########## Share public link personalised link ############
-    #     public_without = share_public_link_without_personalised(driver)
-    #     public_without.Schedule_without_personalised_link()
-    #
-    # ########## Publish webiste link ############
-    #     public_without.Publish_your_website()
+
+    ########## Share public link without personalised link ############
+        public_link = share_public_link(driver)
+        public_link.Schedule_with_personalised_link()
+
+    ########## Share public link personalised link ############
+        public_without = share_public_link_without_personalised(driver)
+        public_without.Schedule_without_personalised_link()
+
+    ########## Publish webiste link ############
+        public_without.Publish_your_website()
 
 
 if __name__ == "__main__":

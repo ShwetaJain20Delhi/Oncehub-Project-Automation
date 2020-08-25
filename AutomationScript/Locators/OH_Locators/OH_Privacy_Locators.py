@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
@@ -54,6 +56,7 @@ class Privacy_GDPR_Information():
         self.driver.execute_script("arguments[0].scrollIntoView();", flag)
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.visibility_of_element_located((By.XPATH, "//span[contains(text(),'Save')]"))).click()
+        time.sleep(3)
 
 
 class Privacy_GDPR_Compliance():
