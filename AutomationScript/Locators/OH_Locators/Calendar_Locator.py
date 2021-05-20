@@ -11,17 +11,53 @@ class Connection_checking_for_exchange():
         self.driver = driver
     def check_Whether_Exchange_calendar_is_connected_or_not_if_not_connect_Exchange_Calendar(self):
         try:
-            if self.driver.find_element_by_xpath("//div[@class='ConnectedCal-icon outlook_exchange_icon']//following-sibling::div//h4[contains(text(),' Connected to Exchange/Outlook Calendar ')]").is_displayed():
-                print("Exchange calendar is already connected")
+            if self.driver.find_element_by_id("ExchangeCalendarConnectBtn").is_displayed():
+                print("connect to exchange calendar")
+                exchangecalendar = ExchangeCalendar(self.driver)
+                exchangecalendar.click_exchange_connect_button()
+                exchangecalendar.enter_username()
+                exchangecalendar.enter_password()
+                exchangecalendar.expand_advanced_setting()
+                exchangecalendar.enter_ews_url()
+                exchangecalendar.click_connect_button()
+                print("Exchange Calendar Connected")
         except NoSuchElementException:
-            exchangecalendar = ExchangeCalendar(self.driver)
-            exchangecalendar.click_exchange_connect_button()
-            exchangecalendar.enter_username()
-            exchangecalendar.enter_password()
-            exchangecalendar.expand_advanced_setting()
-            exchangecalendar.enter_ews_url()
-            exchangecalendar.click_connect_button()
-            print("Exchange Calendar Connected")
+            exchange_text = self.driver.find_element_by_xpath("//h4[contains(text(),'Connected to Exchange/Outlook Calendar')]")
+            calendar_text = self.driver.find_element_by_xpath("//h4[contains(text(),'Connected to']")
+            print(calendar_text)
+            if calendar_text == exchange_text:
+                print("Exchange Calendar is already connected")
+            else:
+                check1 = Disconnect_any_connected_calendar(self.driver)
+                check1.Disconnect_calendar()
+                exchangecalendar = ExchangeCalendar(self.driver)
+                exchangecalendar.click_exchange_connect_button()
+                exchangecalendar.enter_username()
+                exchangecalendar.enter_password()
+                exchangecalendar.expand_advanced_setting()
+                exchangecalendar.enter_ews_url()
+                exchangecalendar.click_connect_button()
+                print("Exchange Calendar Connected")
+
+
+        #
+        # chk = self.driver.find_element_by_class_name("ConnectedCal-icon outlook_exchange_icon").is_displayed()
+        # # chk = self.driver.find_element_by_class_name("//div[@class='ConnectedCal-icon outlook_exchange_icon']//following-sibling::div//h4[con'tains(text(),' Connected to Exchange/Outlook Calendar )]").is_displayed()
+        # print(chk)
+        # if self.driver.find_element_by_class_name("ConnectedCal-icon outlook_exchange_icon").is_displayed():
+        # # if self.driver.find_element_by_xpath("//div[@class='ConnectedCal-icon outlook_exchange_icon']//following-sibling::div//h4[contains(text(),' Connected to Exchange/Outlook Calendar ')]").is_displayed():
+        #     print("Exchange calendar is already connected")
+        # else:
+        #     print("Not working")
+        # except NoSuchElementException:
+        #     exchangecalendar = ExchangeCalendar(self.driver)
+        #     exchangecalendar.click_exchange_connect_button()
+        #     exchangecalendar.enter_username()
+        #     exchangecalendar.enter_password()
+        #     exchangecalendar.expand_advanced_setting()
+        #     exchangecalendar.enter_ews_url()
+        #     exchangecalendar.click_connect_button()
+        #     print("Exchange Calendar Connected")
         # except NoSuchElementException:
         #     check1 = Disconnect_any_connected_calendar(self.driver)
         #     check1.Disconnect_calendar()

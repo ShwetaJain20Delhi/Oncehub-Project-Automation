@@ -1,8 +1,12 @@
+from AutomationScript.Calendar_connection.O365_via_oAuth_Calendar import O365_OAuth_calendar_connection_setting
 from AutomationScript.Locators.OH_Locators.SignupAndSO_Onboarding_Locators import inbox_email, Product_selection, \
-    Timezone_selection, Calendar_connection, video_conferencing, test_booking, Signup, skip_tour, logout, chatonce
+    Timezone_selection, Calendar_connection, video_conferencing, test_booking, Signup, skip_tour, logout, chatonce, \
+    calendar_connection
 from AutomationScript.Webdrivers.Chrome_driver import get_chrome_driver
 import time
 from selenium.webdriver.common.keys import Keys
+import pyperclip as pc
+
 
 
 class Signup_SO_Onboarding():
@@ -18,6 +22,9 @@ class Signup_SO_Onboarding():
         self.driver.maximize_window()
         inbox.launch_inbox_email()
         inbox.copy_inbox_email()
+        text = pc.paste()
+        print(text)
+        # print(Keys.CONTROL + "v")
 
     def Signup_with_new_user(self):
         onboard = Signup(self.driver)
@@ -42,6 +49,10 @@ class Signup_SO_Onboarding():
         timezone.select_timezone()
         timezone.click_save()
         timezone.click_continue()
+
+    def skip_calendar_connection(self):
+        skip = calendar_connection(self.driver)
+        skip.click_skip_for_calendar_connection()
 
     def connect_Exchange_calendar(self):
         connect = Calendar_connection(self.driver)
@@ -79,16 +90,24 @@ class Signup_SO_Onboarding():
 
 
 if __name__ == "__main__":
-    driver = get_chrome_driver().launch_chrome()
-    Onboard_SO = Signup_SO_Onboarding(driver)
-    Onboard_SO.Inbox_email()
-    Onboard_SO.Signup_with_new_user()
-    Onboard_SO.select_product()
-    Onboard_SO.select_timezone()
-    Onboard_SO.connect_Exchange_calendar()
-    Onboard_SO.Conferencing_option()
-    Onboard_SO.Booking_test()
-    Onboard_SO.SO_tour_skip()
+    for x in range(1):
+        driver = get_chrome_driver().launch_chrome()
+        Onboard_SO = Signup_SO_Onboarding(driver)
+        Onboard_SO.Inbox_email()
+        Onboard_SO.Signup_with_new_user()
+        Onboard_SO.select_product()
+        Onboard_SO.select_timezone()
+        Onboard_SO.skip_calendar_connection()
+        # Onboard_SO.connect_Exchange_calendar()
+        Onboard_SO.Conferencing_option()
+        Onboard_SO.Booking_test()
+        Onboard_SO.SO_tour_skip()
+        calendar = O365_OAuth_calendar_connection_setting(driver)
+        calendar.Calendarconnection_from_profilemenu()
+        calendar.calendarconnection_from_menu()
+        # calendar.Oh_O365_oAuth_calendar_connect()
+        driver.close()
+
     # Onboard_SO.ChatOnce_started()
-    Onboard_SO.Application_logout()
-    driver.close()
+    # Onboard_SO.Application_logout()
+    # driver.close()

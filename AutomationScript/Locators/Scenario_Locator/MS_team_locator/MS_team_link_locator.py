@@ -38,9 +38,11 @@ class redirect_to_SO_setup_page():
     def __init__(self, driver):
         self.driver = driver
     def click_on_setup_menu(self):
+        time.sleep(10)
         wait = WebDriverWait(self.driver, 20)
         wait.until(ec.presence_of_element_located((By.XPATH, "//span[@class='product-link']"))).click()
     def select_SO_setup_option(self):
+        time.sleep(4)
         wait = WebDriverWait(self.driver, 20)
         wait.until(ec.presence_of_element_located((By.XPATH, "//a[contains(text(),' ScheduleOnce setup')]"))).click()
 

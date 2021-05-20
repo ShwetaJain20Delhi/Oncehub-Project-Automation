@@ -37,9 +37,9 @@ class O365_OAuth_calendar_connection_setting():
             if handle != main_page:
                 login_page = handle
         self.driver.switch_to.window(login_page)
-        oAuth_calendar.enter_email("shweta.jain@devsunil.onmicrosoft.com")
+        oAuth_calendar.enter_email("shweta.jain@oncehq.com")
         oAuth_calendar.click_next_button()
-        oAuth_calendar.enter_password("Oncehub@12345")
+        oAuth_calendar.enter_password("Schedule@123456")
         oAuth_calendar.click_signin()
         oAuth_calendar.Accept_permission()
         self.driver.switch_to.window(main_page)
@@ -63,8 +63,8 @@ if __name__ == "__main__":
     calendar.Calendarconnection_from_profilemenu()
     calendar.calendarconnection_from_menu()
     calendar.Oh_O365_oAuth_calendar_connect()
-    calendar.Oh_reminder_setting()
-    calendar.so_setup()
+    # calendar.Oh_reminder_setting()
+    # calendar.so_setup()
     driver.close()
 
 

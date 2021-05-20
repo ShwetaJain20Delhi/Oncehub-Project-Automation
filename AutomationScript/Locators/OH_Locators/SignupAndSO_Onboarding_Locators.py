@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
@@ -20,20 +22,24 @@ class Signup():
         self.password = "password"
         self.Repassword = "retypePassword"
     def Navigate_to_URL(self):
-        self.driver.get("https://account2.onceplatform.com/signup")
+        self.driver.get("https://pythonsaccount.staticso2.com/signup")
         self.driver.implicitly_wait(35)
-    def Enter_1stName(self, fname):
+    def Enter_1stName(self, name):
         wait = WebDriverWait(self.driver, 30)
-        wait.until(ec.visibility_of_element_located((By.NAME, self.name))).send_keys(fname)
+        wait.until(ec.visibility_of_element_located((By.NAME, self.name))).send_keys(name)
+        time.sleep(3)
     def Enter_email(self, email):
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.visibility_of_element_located((By.NAME, self.email))).send_keys(email)
+        time.sleep(2)
     def Enter_password(self, password):
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.visibility_of_element_located((By.NAME, self.password))).send_keys(password)
+        time.sleep(2)
     def ReEnter_password(self, repassword):
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.visibility_of_element_located((By.NAME, self.Repassword))).send_keys(repassword)
+        time.sleep(2)
     def click_signup_button(self):
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.visibility_of_element_located((By.ID, "signUp"))).click()
@@ -44,6 +50,7 @@ class Product_selection():
         self.driver = driver
     def select_so_product(self):
         wait = WebDriverWait(self.driver, 60)
+        time.sleep(10)
         wait.until(ec.visibility_of_element_located((By.ID, "so-get-started"))).click()
 
 
@@ -52,11 +59,14 @@ class Timezone_selection():
         self.driver = driver
     def select_sunday(self):
         wait = WebDriverWait(self.driver, 80)
+        time.sleep(15)
         wait.until(ec.presence_of_element_located((By.ID, "sunday"))).click()
     def select_saturday(self):
+        time.sleep(3)
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.presence_of_element_located((By.ID, "saturday"))).click()
     def click_on_change_timezone(self):
+        time.sleep(3)
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.visibility_of_element_located((By.ID, "changetz"))).click()
     def click_on_dropdown(self):
@@ -64,14 +74,18 @@ class Timezone_selection():
         wait.until(ec.visibility_of_element_located((By.ID, "selectedCountry"))).click()
     def search_India(self, country):
         wait = WebDriverWait(self.driver, 30)
+        time.sleep(3)
         wait.until(ec.presence_of_element_located((By.XPATH, "//input[@class='oui-input-element oui-select-search-input oui-input oui-primary cdk-text-field-autofill-monitored']"))).send_keys(country)
     def select_timezone(self):
+        time.sleep(3)
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.visibility_of_element_located((By.XPATH, "//span[contains(text(),'India')]"))).click()
     def click_save(self):
+        time.sleep(3)
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.visibility_of_element_located((By.ID, "saveTimeZone"))).click()
     def click_continue(self):
+        time.sleep(3)
         flag = self.driver.find_element_by_id("continue")
         self.driver.execute_script("arguments[0].scrollIntoView();", flag)
         wait = WebDriverWait(self.driver, 30)
@@ -113,14 +127,24 @@ class video_conferencing():
     def __init__(self, driver):
         self.driver = driver
     def click_skip_for_video_conferencing(self):
+        time.sleep(3)
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.visibility_of_element_located((By.XPATH, "//a[@id='setUpLater']"))).click()
+
+
+class calendar_connection():
+    def __init__(self, driver):
+        self.driver = driver
+    def click_skip_for_calendar_connection(self):
+        wait = WebDriverWait(self.driver, 30)
+        wait.until(ec.visibility_of_element_located((By.ID, "setUpLater"))).click()
 
 
 class test_booking():
     def __init__(self, driver):
         self.driver = driver
     def click_skip_for_test_booking(self):
+        time.sleep(3)
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.visibility_of_element_located((By.XPATH, "// span[contains(text(), 'Skip')]"))).click()
 
@@ -129,6 +153,7 @@ class skip_tour():
     def __init__(self, driver):
         self.driver = driver
     def click_skip_for_test_booking(self):
+        time.sleep(3)
         wait = WebDriverWait(self.driver, 30)
         wait.until(ec.visibility_of_element_located((By.XPATH, "//a[contains(text(),'Skip tour')]"))).click()
 
